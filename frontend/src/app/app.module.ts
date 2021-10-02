@@ -9,13 +9,17 @@ import { MaterialModule } from './modules/material/material.module';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './components/auth/login/login.component';
+import { CalendarComponent } from './components/dashboard/calendar/calendar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     RegisterComponent,
-    DashboardComponent
+    DashboardComponent,
+    LoginComponent,
+    CalendarComponent
   ],
   imports: [
     BrowserModule,
