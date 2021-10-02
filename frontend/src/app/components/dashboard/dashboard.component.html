@@ -1,0 +1,46 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav id="sidenav"#drawer class="sidenav" fixedInViewport
+        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+        [mode]="(isHandset$ | async) ? 'over' : 'side'"
+        [opened]="(isHandset$ | async) === false" >
+      <mat-toolbar class="title"><img src="/assets/icons/logo_2.png"/></mat-toolbar>
+      <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header class="section"><mat-icon svgIcon="account"></mat-icon>Sistema</mat-expansion-panel-header>
+      <button mat-button class="btnSection"><mat-icon svgIcon="account-group"></mat-icon>Usuarios</button>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header class="section"><mat-icon svgIcon="calendar"></mat-icon>Calendario</mat-expansion-panel-header>
+    </mat-expansion-panel>
+  </mat-accordion>
+    </mat-sidenav>
+    
+    <mat-sidenav-content >
+      <mat-toolbar color="primary">
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+          *ngIf="isHandset$ | async">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+        
+        <span class="fill-remaining-space"></span>
+       
+        <button class="btnUser"style="color: white; font-size: 15px !important;" mat-button [matMenuTriggerFor]="menu">
+        <mat-icon svgIcon="account-circle"></mat-icon>Benito</button>
+        <mat-menu #menu="matMenu" class="remove-padding">
+        <mat-card class="user-card">
+              <mat-card-title class="user">Benito</mat-card-title>
+            </mat-card>
+          <button mat-menu-item >
+            <mat-icon svgIcon="logout"></mat-icon>Cerrar sesión
+            
+          </button>
+        </mat-menu>
+      </mat-toolbar>
+      <!-- Add Content Here -->
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
