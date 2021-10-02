@@ -1,0 +1,8 @@
+@import "../../styles.css";
+mat-form-field {
+  width: 90%;
+}
+.title {
+  justify-content: center;
+  text-align: center;
+}
