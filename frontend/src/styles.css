@@ -2,3 +2,16 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.color-primary{
+    background-color: #67152B;
+}
+
+.color-secondary{
+    background-color: white;
+    color: #67152B;
+}
+
+.bg-dark{
+    color: black;
+}
