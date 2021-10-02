@@ -15,3 +15,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .bg-dark{
     color: black;
 }
+
+.mat-form-field-appearance-outline .mat-form-field-outline , .mat-select-arrow {
+    color: black;
+}
