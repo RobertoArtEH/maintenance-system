@@ -8,6 +8,8 @@ import { MaterialModule } from './modules/material/material.module';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './components/auth/login/login.component';
+import { CalendarComponent } from './components/dashboard/calendar/calendar.component';
 import { UsersComponent } from './components/sections/system/users/users.component';
 import { UserDialogComponent } from './components/sections/dialogs/user-dialog/user-dialog.component';
 
@@ -17,6 +19,8 @@ import { UserDialogComponent } from './components/sections/dialogs/user-dialog/u
     HeaderComponent,
     RegisterComponent,
     DashboardComponent,
+    LoginComponent,
+    CalendarComponent
     UsersComponent,
     UserDialogComponent
   ],
