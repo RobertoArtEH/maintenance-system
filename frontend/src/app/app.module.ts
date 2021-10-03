@@ -12,6 +12,7 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { CalendarComponent } from './components/dashboard/calendar/calendar.component';
 import { UsersComponent } from './components/sections/system/users/users.component';
 import { UserDialogComponent } from './components/sections/dialogs/user-dialog/user-dialog.component';
+import { RequestComponent } from './components/sections/request/request.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { UserDialogComponent } from './components/sections/dialogs/user-dialog/u
     LoginComponent,
     CalendarComponent,
     UsersComponent,
-    UserDialogComponent
+    UserDialogComponent,
+    RequestComponent
   ],
   imports: [
     BrowserModule,
