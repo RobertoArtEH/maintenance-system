@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -11,6 +10,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/auth/login/login.component';
 import { CalendarComponent } from './components/dashboard/calendar/calendar.component';
+import { UsersComponent } from './components/sections/system/users/users.component';
+import { UserDialogComponent } from './components/sections/dialogs/user-dialog/user-dialog.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,8 @@ import { CalendarComponent } from './components/dashboard/calendar/calendar.comp
     DashboardComponent,
     LoginComponent,
     CalendarComponent
+    UsersComponent,
+    UserDialogComponent
   ],
   imports: [
     BrowserModule,

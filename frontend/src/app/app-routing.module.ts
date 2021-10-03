@@ -3,7 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/auth/login/login.component';
-// import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { UsersComponent } from './components/sections/system/users/users.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -13,12 +14,11 @@ const routes: Routes = [
   {
     path: 'home', component: DashboardComponent,
     children: [
-
+      
+      {path: 'system/users', component: UsersComponent},
       
     ]
-    
   },
-
 ];
 
 @NgModule({

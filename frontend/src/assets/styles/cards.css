@@ -1,0 +1,88 @@
+@import "../../styles.css";
+
+.card {
+  border-radius: 15px;
+  background-color: white;
+  margin: 10px;
+  height: 100%;
+  color: black;
+}
+.container-card {
+  border-radius: 15px;
+  width: 100%;
+  background-color: white;
+  color: black;
+  border-color: #67152b;
+  border-width: 1px;
+  border-style: solid;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  height: 100%;
+  color: black;
+}
+.container-categorie {
+  background-color: white;
+  color: black;
+  border-color: #67152b;
+  border-width: 1px;
+  border-style: solid;
+  height: 35px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+  border-radius: 15px;
+}
+
+.card-wrapper {
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+}
+.content {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+.card-wrapper mat-card-header {
+  text-align: center;
+  width: 100%;
+  display: block;
+  font-weight: 500;
+}
+
+.card-wrapper mat-card-header mat-card-title {
+  font-size: 28px;
+}
+
+.form-container {
+  display: block;
+  flex-direction: column;
+  margin: 5px;
+  color: black;
+}
+
+.section-card {
+  font-weight: 400;
+  justify-content: center;
+}
+.subtitle {
+  color: black;
+}
+.user {
+  font-size: 14px;
+  font-style: bold;
+  font-weight: 450;
+  color: white;
+}
+
+.mat-card {
+  border-color: #67152b;
+  border-width: 1px;
+  border-style: solid;
+}
+mat-label {
+  color: black;
+}
