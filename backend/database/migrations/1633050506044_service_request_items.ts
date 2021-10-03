@@ -6,12 +6,15 @@ export default class ServiceRequestItems extends BaseSchema {
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
-
-      /**
-       * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
-       */
+      table.integer('service_request_id')
+      table.string('item_name')
+      table.string('description')
+      table.string('general_ubication')
+      table.string('specific_ubication')
+      table.string('service_details')
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })
+      table.timestamp('deleted_at', { useTz: true })
     })
   }
 

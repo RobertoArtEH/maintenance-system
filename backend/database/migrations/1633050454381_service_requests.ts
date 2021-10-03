@@ -6,12 +6,15 @@ export default class ServiceRequests extends BaseSchema {
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
-
-      /**
-       * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
-       */
+      table.string('folio')
+      table.text('comments')
+      table.integer('service_status_id')
+      table.integer('area_id')
+      table.integer('responsible_id')
+      table.dateTime('service_date', { useTz: true })
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })
+      table.timestamp('deleted_at', { useTz: true })
     })
   }
 

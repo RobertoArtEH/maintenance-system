@@ -6,10 +6,10 @@ export default class MaintenanceLogs extends BaseSchema {
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
-
-      /**
-       * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
-       */
+      table.integer('service_type_id')
+      table.integer('responsible_id')
+      table.integer('maintenance_status_id')
+      table.dateTime('service_date', { useTz: true })
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })
     })
