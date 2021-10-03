@@ -12,7 +12,9 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { CalendarComponent } from './components/dashboard/calendar/calendar.component';
 import { UsersComponent } from './components/sections/system/users/users.component';
 import { UserDialogComponent } from './components/sections/dialogs/user-dialog/user-dialog.component';
-import { RequestComponent } from './components/sections/request/request.component';
+import { RequestComponent } from './components/sections/requests/request/request.component';
+import { PendingRequestComponent } from './components/sections/requests/pending-request/pending-request.component';
+import { SignedRequestComponent } from './components/sections/requests/signed-request/signed-request.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { RequestComponent } from './components/sections/request/request.componen
     CalendarComponent,
     UsersComponent,
     UserDialogComponent,
-    RequestComponent
+    RequestComponent,
+    PendingRequestComponent,
+    SignedRequestComponent
   ],
   imports: [
     BrowserModule,
