@@ -5,22 +5,22 @@ export default class ServiceRequestItem extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
-  @column({ isPrimary: true })
+  @column()
   public serviceRequestId: number
 
-  @column({ isPrimary: true })
+  @column()
   public itemName: string
 
-  @column({ isPrimary: true })
+  @column()
   public description: string
 
-  @column({ isPrimary: true })
+  @column()
   public generalUbication: string
 
-  @column({ isPrimary: true })
+  @column()
   public specificUbication: string
 
-  @column({ isPrimary: true })
+  @column()
   public serviceDetails: string
 
   @column.dateTime({ autoCreate: true })
