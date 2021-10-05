@@ -5,6 +5,18 @@ export default class MaintenanceLog extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
+  @column()
+  public serviceTypeId: number
+
+  @column()
+  public responsibleId: number
+
+  @column()
+  public maintenanceStatusId: number
+
+  @column.dateTime()
+  public serviceDate: DateTime
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 
