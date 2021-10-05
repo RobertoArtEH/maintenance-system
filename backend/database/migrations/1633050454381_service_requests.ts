@@ -13,8 +13,8 @@ export default class ServiceRequests extends BaseSchema {
       table.integer('responsible_id')
       table.dateTime('service_date', { useTz: true })
       table.timestamp('created_at', { useTz: true })
-      table.timestamp('updated_at', { useTz: true })
-      table.timestamp('deleted_at', { useTz: true })
+      table.timestamp('updated_at', { useTz: true }).defaultTo(this.now())
+      table.timestamp('deleted_at', { useTz: true }).defaultTo(this.now())
     })
   }
 

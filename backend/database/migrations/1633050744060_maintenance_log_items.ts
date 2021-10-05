@@ -6,12 +6,13 @@ export default class MaintenanceLogItems extends BaseSchema {
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
+      table.integer('maintenance_log_id')
       table.string('item_name')
       table.integer('quantity')
       table.text('description')
       table.text('suggetions')
       table.timestamp('created_at', { useTz: true })
-      table.timestamp('updated_at', { useTz: true })
+      table.timestamp('updated_at', { useTz: true }).defaultTo(this.now())
     })
   }
 
