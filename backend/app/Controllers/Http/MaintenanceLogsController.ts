@@ -33,7 +33,8 @@ export default class MaintenanceLogsController {
 
       return service
     } catch (error) {
-      return response.badRequest('Ocurrió un error al guardar el registro de mantenimiento.')
+      //return response.badRequest('Ocurrió un error al guardar el registro de mantenimiento.')
+      return error.message
     }
   }
 

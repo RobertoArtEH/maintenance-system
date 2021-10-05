@@ -23,6 +23,7 @@ import Route from '@ioc:Adonis/Core/Route'
 /** Auth */
 Route.post('login', 'AuthController.login')
 Route.get('logout', 'AuthController.logout')
+Route.post('register', 'AuthController.register')
 
 /** User */
 Route.get('users/index', 'UsersController.index')
@@ -33,3 +34,8 @@ Route.post('user/delete', 'UsersController.delete')
 Route.get('services/index', 'ServiceRequestsController.index')
 Route.post('service/save', 'ServiceRequestsController.save')
 Route.post('service/delete', 'ServiceRequestsController.delete')
+
+// Maintenance Logs 
+Route.get('maintenance/index', 'MaintenanceLogsController.index')
+Route.post('maintenance/save', 'MaintenanceLogsController.save')
+Route.post('maintenance/delete', 'MaintenanceLogsController.delete')

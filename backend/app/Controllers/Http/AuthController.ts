@@ -19,14 +19,14 @@ export default class AuthController {
     return { revoked: true }
   }
 
-  public async register({ request }: HttpContextContract) {
-    const name = request.input("name")
-    const lastName = request.input("lastName")
-    const roleId = request.input("roleId")
-    const careerId = request.input("careerId")
-    const shiftId = request.input("shiftId")
-    const email = request.input("email")
-    const password = request.input("password")
+  public async register ({ request }: HttpContextContract) {
+    const name = request.input('name')
+    const lastName = request.input('lastName')
+    const roleId = request.input('roleId')
+    const careerId = request.input('careerId')
+    const shiftId = request.input('shiftId')
+    const email = request.input('email')
+    const password = request.input('password')
 
     const user = new User()
     user.name = name
@@ -38,7 +38,7 @@ export default class AuthController {
     user.password = password
     await user.save()
 
-    return
+    return user
   }
 }
 // MQ.oeWgyOBXsbIcBAxS2U6sOwzlCNZ6cWF-Z-I49KWUfdgMn7O2zpJXK0Hw76u9
