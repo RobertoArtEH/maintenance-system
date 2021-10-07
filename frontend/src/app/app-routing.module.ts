@@ -7,14 +7,17 @@ import { UsersComponent } from './components/sections/system/users/users.compone
 import { RequestComponent } from './components/sections/requests/request/request.component';
 import { PendingRequestComponent } from './components/sections/requests/pending-request/pending-request.component';
 import { SignedRequestComponent } from './components/sections/requests/signed-request/signed-request.component';
+import { AuthGuard } from './guards/auth/auth.guard';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full' },
   
-  {path: 'register', component: RegisterComponent},
-  {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent, canActivate: [AuthGuard], data: {route: 'auth'}},
+  {path: 'login', component: LoginComponent, canActivate: [AuthGuard], data: {route: 'auth'}},
   {
     path: 'home', component: DashboardComponent,
+    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
     children: [
       
       {path: 'system/users', component: UsersComponent},
