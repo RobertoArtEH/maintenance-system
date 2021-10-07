@@ -1,0 +1,103 @@
+.sidenav-container {
+    height: 100%;
+    width: 100%;
+  }
+  .sidenav {
+    width: 200px;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.24);
+    background-color: white;
+    color: black;
+  }
+  .sidenav .mat-toolbar {
+    background-color: inherit;
+    height: 72px;
+    width: 100%;
+    color: white;
+  }
+  .mat-toolbar.mat-primary {
+    text-align: center;
+    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.24);
+    background-color: #67152B;
+    top: 0;
+    left: 0;
+  }
+
+  mat-sidenav-content {
+      left: 0;
+      background-image: url("/assets/icons/background.png");
+  }
+
+  .mat-list-icon {
+    color: white;
+  }
+  .section {
+    margin-top: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    background: white;
+    color: black;
+  }
+  
+  img {
+    display: block;
+    width: 60px;
+    height: 60px;
+  }
+
+  .title {
+    justify-content: center;
+    font-size: medium;
+  }
+
+  .btnSection{
+      width: 100%;
+      text-align: start;
+      color: black;
+  }
+  
+  mat-expansion-panel,
+  mat-expansion-panel-header {
+    background:white;
+    color: black;
+  }
+  @media (min-width: 100px) and (max-width: 600px) {
+    .mat-icon svg {
+      height: 38px;
+      width: 35px;
+    }
+  }
+  .mat-icon svg {
+    height: 35px;
+    width: 35px;
+  }
+  .fill-remaining-space {
+    flex: 1 1 auto;
+  }
+  .mat-menu-item {
+    line-height: 15px;
+    height: 35px;
+  }
+
+  .btnUser {
+      width: 100px;
+  }
+  .mat-button {
+    padding: 0;
+  }
+  .user-card {
+    justify-content: center;
+    text-align: center;
+    border-radius: 0;
+    bottom: 10px;
+    background: black;
+    color: white;
+  }
+
+  mat-card-subtitle {
+    font-size: small;
+    color: white;
+  }
+
+  .user{
+      font-size: medium;
+  }

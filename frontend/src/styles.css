@@ -1,4 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
+@import "assets/styles/tables.css";
+@import "assets/styles/cards.css";
+@import "assets/styles/buttons.css";
+@import "assets/styles/dialogs.css";
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.color-primary{
+    background-color: #67152B;
+}
+
+.color-secondary{
+    background-color: white;
+    color: #67152B;
+}
+
+.bg-dark{
+    color: black;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline , .mat-select-arrow {
+    color: black;
+}
+
+.mat-dialog-container{
+    background: white;
+    color: black;
+    border-color:#67152B;
+    border-width: 1px;
+    border-style: solid;
+}

@@ -1,0 +1,83 @@
+<div>
+    <div class="add-title">
+      <h2 class="primary" *ngIf="data.action== true">Editar Usuario</h2>
+      <h2 class="primary" *ngIf="data.action== false">Crear Usuario</h2>
+    </div>
+    <div>
+      <form [formGroup]="userForm">
+        <mat-grid-list cols="2"rowHeight="85px">
+          <mat-grid-tile>
+            <mat-form-field appearance="outline" class="field-full-width">
+                <mat-label>Nombre</mat-label>
+                <input matInput formControlName="name" type="text" placeholder="Nombre" required>
+                <mat-icon matSuffix>person</mat-icon>
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-form-field appearance="outline" class="field-full-width">
+                <mat-label>Correo electrónico</mat-label>
+                <input matInput formControlName="email" type="text" placeholder="Correo electrónico" required>
+                <mat-icon matSuffix>email</mat-icon>
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-form-field appearance="outline" class="field-full-width">
+                <mat-label>Apellidos</mat-label>
+                <input matInput formControlName="last_name" type="text" placeholder="Apellidos" required>
+                <mat-icon matSuffix>person</mat-icon>
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-form-field appearance="outline" class="field-full-width">
+                <mat-label>Contraseña</mat-label>
+                <input matInput formControlName="password" type="text" placeholder="Contraseña" required>
+                <mat-icon matSuffix>lock</mat-icon>
+            </mat-form-field>
+          </mat-grid-tile>
+           <mat-grid-tile>
+            <mat-form-field appearance="outline" class="field-full-width">
+                <mat-label>Selecciona una carrera</mat-label>
+                <mat-select formControlName="career" disableRipple required>
+                  <mat-option value="1">Option 1</mat-option>
+                  <mat-option value="2">Option 2</mat-option>
+                  <mat-option value="3">Option 3</mat-option>
+                </mat-select>
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-form-field appearance="outline" class="field-full-width">
+                <mat-label>Selecciona un rol</mat-label>
+                <mat-select formControlName="role" disableRipple required>
+                  <mat-option value="1">Option 1</mat-option>
+                  <mat-option value="2">Option 2</mat-option>
+                  <mat-option value="3">Option 3</mat-option>
+                </mat-select>
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-form-field appearance="outline" class="field-full-width">
+                <mat-label>Teléfono</mat-label>
+                <input matInput formControlName="phone" type="text" placeholder="Teléfono" required>
+                <mat-icon matSuffix>lock</mat-icon>
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-form-field appearance="outline" class="field-full-width">
+                <mat-label>Selecciona un turno</mat-label>
+                <mat-select formControlName="shift" disableRipple required>
+                  <mat-option value="1">Matutino</mat-option>
+                  <mat-option value="2">Vespertino</mat-option>
+                </mat-select>
+            </mat-form-field>
+          </mat-grid-tile>
+
+        </mat-grid-list>
+  
+        <div class="btn-sec">
+          <button mat-raised-button *ngIf="data.action== true" class="btnDialog">Actualizar</button>
+          <button mat-raised-button *ngIf="data.action== false" class="btnDialog">Guardar</button>
+          <button mat-raised-button type="button" class="btnDialogCancel" (click)="close()">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
