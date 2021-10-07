@@ -11,6 +11,7 @@ export default class ServiceRequests extends BaseSchema {
       table.integer('service_status_id')
       table.integer('area_id')
       table.integer('responsible_id')
+      table.integer('status_id')
       table.dateTime('service_date', { useTz: true })
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true }).defaultTo(this.now())

@@ -12,6 +12,8 @@ export default class UsersSchema extends BaseSchema {
       table.integer('career_id').notNullable()
       table.integer('shift_id').notNullable()
       table.string('email', 255).notNullable()
+      table.integer('isAdmin', 1)
+      table.integer('status_id')
       table.string('password', 180).notNullable()
       table.string('remember_me_token').nullable()
       table.timestamp('created_at', { useTz: true }).notNullable()

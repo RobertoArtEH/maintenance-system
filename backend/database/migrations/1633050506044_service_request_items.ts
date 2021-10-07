@@ -12,6 +12,7 @@ export default class ServiceRequestItems extends BaseSchema {
       table.string('general_ubication')
       table.string('specific_ubication')
       table.string('service_details')
+      table.integer('status_id')
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true }).defaultTo(this.now())
       table.timestamp('deleted_at', { useTz: true }).defaultTo(this.now())
