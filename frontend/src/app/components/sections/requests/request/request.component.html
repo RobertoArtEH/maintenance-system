@@ -1,0 +1,88 @@
+<div class="table-container">
+    <div class="card-wrapper">
+        <mat-card class="container-categorie">
+            <h1 class="section-card">Nueva Solicitud</h1></mat-card>
+            <hr>
+        <div class="content">
+        <mat-card class="container-card">
+            <mat-card class="card">
+                    <mat-card-header>
+                            <mat-card-title>Solicitud de trabajo</mat-card-title>
+                        </mat-card-header>
+                      <form [formGroup]="requestForm" autocomplete="off" class="form">
+                            <mat-card-content class="card-content">
+                              <mat-grid-list cols="2" rowHeight="85px">
+                                <mat-grid-tile>
+                                    <mat-form-field appearance="outline" class="field-full-width">
+                                      <mat-label>Selecciona una carrera</mat-label>
+                                      <mat-select formControlName="career" disableRipple required>
+                                        <mat-option value="1">Option 1</mat-option>
+                                        <mat-option value="2">Option 2</mat-option>
+                                        <mat-option value="3">Option 3</mat-option>
+                                      </mat-select>
+                                  </mat-form-field>
+                                </mat-grid-tile>
+                                <mat-grid-tile>
+                                  <mat-form-field appearance="outline" class="field-full-width">
+                                    <mat-label>Descripción y/o características</mat-label>
+                                    <input matInput formControlName="description" type="text" placeholder="Descripción y/o características" required>
+                                    <mat-icon matSuffix>edit</mat-icon>
+                                </mat-form-field>
+                              </mat-grid-tile>
+                              <mat-grid-tile>
+                                <mat-form-field appearance="outline" class="field-full-width">
+                                  <mat-label>Número de folio</mat-label>
+                                  <input matInput formControlName="folio" type="text" placeholder="Número de folio" required>
+                                  <mat-icon matSuffix>pin</mat-icon>
+                              </mat-form-field>
+                            </mat-grid-tile>
+                                <mat-grid-tile>
+                                  <mat-form-field appearance="outline" class="field-full-width">
+                                    <mat-label>Ubicación específica</mat-label>
+                                    <input matInput formControlName="location_one" type="text" placeholder="Ubicación específica" required>
+                                    <mat-icon matSuffix>map</mat-icon>
+                                </mat-form-field>
+                              </mat-grid-tile>
+                              <mat-grid-tile>
+                                <mat-form-field appearance="outline" class="field-full-width">
+                                    <mat-label>Choose a date</mat-label>
+                                    <input formControlName="date" matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker">
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
+                              </mat-grid-tile>
+                              <mat-grid-tile>
+                                <mat-form-field appearance="outline" class="field-full-width">
+                                  <mat-label>Ubicación general</mat-label>
+                                  <input matInput formControlName="location_two" type="text" placeholder="Ubicación general" required>
+                                  <mat-icon matSuffix>map</mat-icon>
+                              </mat-form-field>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                              <mat-form-field appearance="outline" class="field-full-width">
+                                <mat-label>Equipo, artículo y/o accesorio</mat-label>
+                                  <input matInput formControlName="device" color="color-secondary" type="text" placeholder="Equipo, artículo y/o accesorio" required>
+                                  <mat-icon matSuffix>settings</mat-icon>
+                              </mat-form-field>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field appearance="outline" class="field-full-width">
+                                  <mat-label>Trabajo y/o servicio requerido</mat-label>
+                                  <mat-select formControlName="service" disableRipple required>
+                                    <mat-option value="1">Option 1</mat-option>
+                                    <mat-option value="2">Option 2</mat-option>
+                                    <mat-option value="3">Option 3</mat-option>
+                                  </mat-select>
+                              </mat-form-field>
+                            </mat-grid-tile>
+                              </mat-grid-list>
+                              <div class="btnContainer">
+                                <button type="submit"mat-raised-button color="warn" class="btnRegister">Enviar</button>
+                              </div>
+                            </mat-card-content>
+                      </form>
+                </mat-card>
+            </mat-card>
+        </div>
+    </div>
+</div>

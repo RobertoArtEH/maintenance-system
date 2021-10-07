@@ -1,0 +1,70 @@
+<div>
+  <app-header></app-header>
+  <div class="wrapper">
+    <mat-card class = "container">
+      <div class="imgContainer"><img src="/assets/icons/logo_2.png"/></div>
+    <mat-card-header >
+            <mat-card-title>Registro</mat-card-title>
+        </mat-card-header>
+      <form [formGroup]="registerForm" autocomplete="off" class="form">
+            <mat-card-content class="card-content">
+              <mat-grid-list cols="2" rowHeight="85px">
+                <mat-grid-tile>
+                  <mat-form-field appearance="outline" class="field-full-width">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput formControlName="name" type="text" placeholder="Nombre" required>
+                    <mat-icon matSuffix>person</mat-icon>
+                </mat-form-field>
+              </mat-grid-tile>
+              <mat-grid-tile>
+                <mat-form-field appearance="outline" class="field-full-width">
+                  <mat-label>Apellidos</mat-label>
+                  <input matInput formControlName="last_name" type="text" placeholder="Apellidos" required>
+                  <mat-icon matSuffix>person</mat-icon>
+              </mat-form-field>
+            </mat-grid-tile>
+                <mat-grid-tile>
+                  <mat-form-field appearance="outline" class="field-full-width">
+                    <mat-label>Correo electrónico</mat-label>
+                    <input matInput formControlName="email" type="email" placeholder="Correo electrónico" required>
+                    <mat-icon matSuffix>email</mat-icon>
+                </mat-form-field>
+              </mat-grid-tile>
+              <mat-grid-tile>
+                <mat-form-field appearance="outline" class="field-full-width">
+                  <mat-label>Contraseña</mat-label>
+                    <input matInput formControlName="password" color="color-secondary" type="password" placeholder="Contraseña" required>
+                    <mat-icon matSuffix>lock</mat-icon>
+                </mat-form-field>
+              </mat-grid-tile>
+              <mat-grid-tile>
+                <mat-form-field appearance="outline" class="field-full-width">
+                  <mat-label>Selecciona una carrera</mat-label>
+                  <mat-select formControlName="career" disableRipple required>
+                    <mat-option value="1">Option 1</mat-option>
+                    <mat-option value="2">Option 2</mat-option>
+                    <mat-option value="3">Option 3</mat-option>
+                  </mat-select>
+              </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <mat-form-field appearance="outline" class="field-full-width">
+                <mat-label>Teléfono</mat-label>
+                  <input matInput formControlName="phone" color="color-secondary" type="tel" placeholder="Teléfono" required>
+                  <mat-icon matSuffix>phone</mat-icon>
+              </mat-form-field>
+            </mat-grid-tile>
+              </mat-grid-list>
+              <div class="btnContainer">
+                <button type="submit"mat-raised-button color="warn" class="btnRegister">Registrarse</button>
+              </div>
+
+              
+          <mat-card-footer class="footer">
+            <a routerLink=".">¿Ya tienes cuenta? Inicia sesión</a>
+        </mat-card-footer>
+            </mat-card-content>
+      </form>
+    </mat-card>
+  </div>
+</div>
