@@ -4,11 +4,30 @@ import {
   column,
   beforeSave,
   BaseModel,
+  hasOne,
+  HasOne,
 } from '@ioc:Adonis/Lucid/Orm'
+
+import Role from './Role'
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
   public id: number
+
+  @column()
+  public name: string
+
+  @column()
+  public lastName: string
+
+  @column()
+  public roleId: number
+
+  @column()
+  public careerId: number
+
+  @column()
+  public shiftId: number
 
   @column()
   public email: string
@@ -31,4 +50,10 @@ export default class User extends BaseModel {
       user.password = await Hash.make(user.password)
     }
   }
+
+  @hasOne(() => Role, {
+    localKey: 'roleId',
+    foreignKey: 'id',
+  })
+  public role: HasOne<typeof Role>
 }

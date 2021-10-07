@@ -8,7 +8,7 @@ export default class Pages extends BaseSchema {
       table.increments('id')
       table.string('name')
       table.timestamp('created_at', { useTz: true })
-      table.timestamp('updated_at', { useTz: true })
+      table.timestamp('updated_at', { useTz: true }).defaultTo(this.now())
     })
   }
 
