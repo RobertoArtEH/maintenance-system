@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { confirmDialog, errorMessage, successDialog } from 'src/app/components/resources/alert';
 import { ServiceRequestService } from 'src/app/services/serviceRequest/service-request.service';
 import { RequestDialogComponent } from '../../dialogs/request-dialog/request-dialog.component';
 
@@ -27,7 +28,7 @@ export class RequestComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-  
+
    openDialog(action: boolean, id?){   
     const dialogRef = this.dialogRef.open(RequestDialogComponent,{
       width: '840px',
@@ -53,6 +54,24 @@ export class RequestComponent implements OnInit {
     error => {  
       console.log('Error' + error);  
     });  
+  }
+
+  cancelRequest(id){
+    confirmDialog('¿Estás seguro que deseas cancelar esta solicitud?', 'Cancelar', 'Aceptar').then((result) => {
+      if (result.value) {
+        this.serviceRequest.cancel(id).subscribe( res => {
+          if (res.status){
+            successDialog(res.message).then(() => {
+              this.loadRequests()
+            })
+          } else{
+            errorMessage(res.message)
+          }
+        }, error => {
+          errorMessage(error)
+        })
+      }
+    })
   }
 }
 

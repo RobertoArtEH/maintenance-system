@@ -27,4 +27,8 @@ export class ServiceRequestService {
   show(id): Observable<any>{
     return this.http.get<any>(environment.apiBaseURL + '/service/load/' + id)
   }
+
+  cancel(id): Observable<any>{
+    return this.http.post<any>(environment.apiBaseURL + '/service/cancel/' + id, "")
+  }
 }
