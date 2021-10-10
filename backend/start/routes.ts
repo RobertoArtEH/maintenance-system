@@ -28,6 +28,7 @@ Route.post('register', 'AuthController.register')
 /** User */
 Route.get('users/index', 'UsersController.index')
 Route.post('user/save', 'UsersController.save')
+Route.get('user/load/:id', 'UsersController.find')
 Route.post('user/delete', 'UsersController.delete')
 
 /** Request services */

@@ -9,6 +9,7 @@ import {
 } from '@ioc:Adonis/Lucid/Orm'
 
 import Role from './Role'
+import Area from './Area'
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
@@ -62,4 +63,10 @@ export default class User extends BaseModel {
     foreignKey: 'id',
   })
   public role: HasOne<typeof Role>
+
+  @hasOne(() => Area, {
+    localKey: 'careerId',
+    foreignKey: 'id',
+  })
+  public area: HasOne<typeof Area>
 }
