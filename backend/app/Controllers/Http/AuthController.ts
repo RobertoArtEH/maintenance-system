@@ -14,7 +14,7 @@ export default class AuthController {
     }
   }
 
-  public async logout ({ auth }) {
+  public async logout ({ auth, response }) {
     await auth.use('api').revoke()
     return { revoked: true }
   }
@@ -41,3 +41,4 @@ export default class AuthController {
     return user
   }
 }
+// MQ.oeWgyOBXsbIcBAxS2U6sOwzlCNZ6cWF-Z-I49KWUfdgMn7O2zpJXK0Hw76u9

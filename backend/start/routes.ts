@@ -35,11 +35,7 @@ Route.get('services/index', 'ServiceRequestsController.index')
 Route.post('service/save', 'ServiceRequestsController.save')
 Route.post('service/delete', 'ServiceRequestsController.delete')
 
-/** Maintenance Logs */
+// Maintenance Logs 
 Route.get('maintenance/index', 'MaintenanceLogsController.index')
 Route.post('maintenance/save', 'MaintenanceLogsController.save')
 Route.post('maintenance/delete', 'MaintenanceLogsController.delete')
-
-/** System */
-Route.get('roles/index', 'SystemsController.getRoles')
-Route.get('areas/index', 'SystemsController.getAreas')
