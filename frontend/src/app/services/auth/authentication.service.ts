@@ -27,9 +27,7 @@ export class AuthenticationService {
   }
 
   logout() {
-    return this.http.post<any>(`${this.apiBaseUrl}/logout`, {
-      'refresh_token': this.getRefreshToken()
-    }).pipe(
+    return this.http.get(`${this.apiBaseUrl}/logout`).pipe(
       tap(() => this.removeAll()),
       mapTo(200),
       catchError(error => {
