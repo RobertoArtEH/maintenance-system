@@ -9,8 +9,7 @@ export default class ServiceRequestsController {
    * Lista de solicitudes de servicio
    * @returns json
    */
-  public async index ({ response })
-  {
+  public async index ({ response }) {
     try {
       const services = await ServiceRequest.query()
         .preload('status')
@@ -21,7 +20,7 @@ export default class ServiceRequestsController {
     } catch (error) {
       console.log(error.message)
 
-      return response.badRequest('Ocurrió un error al consultar los usuarios.')
+      return response.badRequest({ status: false, message: 'Ocurrió un error al consultar los usuarios.'})
     }
   }
 
@@ -30,8 +29,7 @@ export default class ServiceRequestsController {
    * @param int id
    * @returns Json
    */
-  public async find ({ request, response })
-  {
+  public async find ({ request, response }) {
     try {
       const id = request.param('id', 0)
 
@@ -50,17 +48,16 @@ export default class ServiceRequestsController {
     } catch (error) {
       console.log(error.message)
 
-      return response.badRequest({ status: true, message: 'Ocurrió un error al consultar los usuarios.' })
+      return response.badRequest({ status: false, message: 'Ocurrió un error al consultar los usuarios.' })
     }
   }
 
   /**
-   * Guardar o actualizar solicitud de servicio
+   * Crear o actualizar solicitud de servicio
    * @param request
    * @returns Json
    */
-  public async save ({ request, response })
-  {
+  public async save ({ request, response }) {
     try {
       const data = request.all()
 
@@ -74,7 +71,7 @@ export default class ServiceRequestsController {
     } catch (error) {
       console.log(error.message)
 
-      return response.badRequest('Ocurrió un error al guardar la solicitud de servicio.')
+      return response.badRequest({ status: false, message: 'Ocurrió un error al guardar la solicitud de servicio.'})
     }
   }
 
@@ -83,8 +80,7 @@ export default class ServiceRequestsController {
    * @param int id
    * @returns Json
    */
-  public async cancel ({ request, response })
-  {
+  public async cancel ({ request, response }) {
     try {
       const id = request.param('id', 0)
 
@@ -99,7 +95,7 @@ export default class ServiceRequestsController {
     } catch (error) {
       console.log(error.message)
 
-      return response.badRequest('Ocurrió un error al guardar la solicitud de servicio.')
+      return response.badRequest({ status: false, message: 'Ocurrió un error al guardar la solicitud de servicio.'})
     }
   }
 }

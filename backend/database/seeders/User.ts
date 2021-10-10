@@ -24,7 +24,7 @@ export default class UserSeeder extends BaseSeeder {
         email: 'confianza@gmail.com',
         password: 'password',
         isAdmin: 0,
-        isActive: 0,
+        isActive: 1,
       },
       {
         name: 'Tecnico',
@@ -35,7 +35,7 @@ export default class UserSeeder extends BaseSeeder {
         email: 'tecnico@gmail.com',
         password: 'password',
         isAdmin: 0,
-        isActive: 0,
+        isActive: 1,
       },
       {
         name: 'AsistenteSistemas',
@@ -46,7 +46,7 @@ export default class UserSeeder extends BaseSeeder {
         email: 'asistente_sistemas@gmail.com',
         password: 'password',
         isAdmin: 0,
-        isActive: 0,
+        isActive: 1,
       },
       {
         name: 'ResponsableArea',
@@ -57,7 +57,7 @@ export default class UserSeeder extends BaseSeeder {
         email: 'responsable_area@gmail.com',
         password: 'password',
         isAdmin: 0,
-        isActive: 0,
+        isActive: 1,
       },
       {
         name: 'Coordinador',
@@ -68,7 +68,7 @@ export default class UserSeeder extends BaseSeeder {
         email: 'coordinador@gmail.com',
         password: 'password',
         isAdmin: 0,
-        isActive: 0,
+        isActive: 1,
       },
       {
         name: 'Asistente',
@@ -79,7 +79,7 @@ export default class UserSeeder extends BaseSeeder {
         email: 'asistente@gmail.com',
         password: 'password',
         isAdmin: 0,
-        isActive: 0,
+        isActive: 1,
       },
     ])
   }

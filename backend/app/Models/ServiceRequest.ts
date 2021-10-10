@@ -61,8 +61,8 @@ export default class ServiceRequest extends BaseModel {
   })
   public responsible: HasOne<typeof User>
 
-  @beforeFetch() 
-  @beforeFind() 
+  @beforeFetch()
+  @beforeFind()
   public static fetchItems(query: ModelQueryBuilderContract<typeof ServiceRequest>) { 
     query.preload('items', (query) => {
       query.where('item_status_id', '!=', Constants.STATUS_CANCEL)

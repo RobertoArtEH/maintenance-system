@@ -8,15 +8,15 @@ export default class AuthController {
 
     try {
       const token = await auth.use('api').attempt(email, password)
-      return response.ok({ status: true, token })
+      return response.ok({ status: true, data: token, message: '' })
     } catch {
-      return response.badRequest('Invalid credentials')
+      return response.badRequest({ status: false, message: 'Credenciales incorrectas.' })
     }
   }
 
   public async logout ({ auth, response }) {
     await auth.use('api').revoke()
-    return { revoked: true }
+    return response.ok({ status: true, data: { revoked: true } })
   }
 
   public async register ({ request, response }: HttpContextContract) {
@@ -38,7 +38,6 @@ export default class AuthController {
     user.password = password
     await user.save()
 
-    return response.created({ status: true, user })
+    return response.created({ status: true, data: user, message: 'El usuario se guardó con éxito.' })
   }
 }
-// MQ.oeWgyOBXsbIcBAxS2U6sOwzlCNZ6cWF-Z-I49KWUfdgMn7O2zpJXK0Hw76u9
