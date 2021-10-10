@@ -6,7 +6,7 @@
         <mat-card-header>
             <mat-card-title>Iniciar Sesión</mat-card-title>
         </mat-card-header>
-        <form [formGroup]="registerForm" autocomplete="off" class="form">
+        <form [formGroup]="loginForm" autocomplete="off" class="form">
             <mat-card-content class="card-content">
                 <mat-grid-list cols="1" rowHeight="85px">
                     <mat-grid-tile>
@@ -25,10 +25,10 @@
                     </mat-grid-tile>
                 </mat-grid-list>
                 <div class="btnContainer">
-                    <button type="submit"mat-raised-button color="warn" class="btnRegister">Entrar</button>
+                    <button type="submit"mat-raised-button color="warn" class="btnRegister" (click)="login()">Entrar</button>
                   </div>
                   <mat-card-footer class="footer">
-                    <a routerLink=".">¿Aún no tienes cuenta? Registrarse</a>
+                    <a routerLink="/register">¿Aún no tienes cuenta? Registrarse</a>
                 </mat-card-footer>
             </mat-card-content>
         </form>
