@@ -8,7 +8,7 @@ export default class AuthController {
 
     try {
       const token = await auth.use('api').attempt(email, password)
-      return token
+      return response.ok({ status: true, token })
     } catch {
       return response.badRequest('Invalid credentials')
     }
@@ -19,7 +19,7 @@ export default class AuthController {
     return { revoked: true }
   }
 
-  public async register ({ request }: HttpContextContract) {
+  public async register ({ request, response }: HttpContextContract) {
     const name = request.input('name')
     const lastName = request.input('lastName')
     const roleId = request.input('roleId')
@@ -38,7 +38,7 @@ export default class AuthController {
     user.password = password
     await user.save()
 
-    return user
+    return response.created({ status: true, user })
   }
 }
 // MQ.oeWgyOBXsbIcBAxS2U6sOwzlCNZ6cWF-Z-I49KWUfdgMn7O2zpJXK0Hw76u9
