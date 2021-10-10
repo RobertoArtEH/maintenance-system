@@ -31,3 +31,24 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     border-width: 1px;
     border-style: solid;
 }
+
+.mat-select-value {
+    color: black;
+}
+.mat-option {
+    color: black;
+    background: white;
+}
+.mat-option.mat-active {
+    color: #fff;
+    background-color: #67152B;
+}
+.mat-option:hover{
+    color: #fff;
+    background-color: rgb(202, 202, 202);
+}
+
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+    color: #fff;
+    background-color: #67152B;
+}
