@@ -1,5 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { ServiceRequestService } from 'src/app/services/serviceRequest/service-request.service';
+import { RequestDialogComponent } from '../../dialogs/request-dialog/request-dialog.component';
 
 @Component({
   selector: 'app-request',
@@ -7,30 +13,46 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./request.component.css']
 })
 export class RequestComponent implements OnInit {
-  requestForm: FormGroup;
-  constructor() { }
+  displayedColumns= ['folio','userRequest','serviceDate','area', 'status', 'accept', 'cancel', 'edit'];
+  dataSource: MatTableDataSource<any>;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  constructor(private dialogRef: MatDialog, private serviceRequest: ServiceRequestService) { }
 
-  ngOnInit(): void {
-    this.buildForm()
+  ngOnInit() {
+    this.loadRequests();
   }
 
-  buildForm(): void {
-    this.requestForm = new FormGroup({
-      career: new FormControl('',Validators.required),
-      folio: new FormControl('',Validators.required),
-      date: new FormControl('',Validators.required),
-      device: new FormControl('',Validators.required),
-      description: new FormControl('',Validators.required),
-      location_one: new FormControl('',Validators.required),
-      location_two: new FormControl('',Validators.required),
-      service: new FormControl('',Validators.required),
+  filter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+  
+   openDialog(action: boolean, id?){   
+    const dialogRef = this.dialogRef.open(RequestDialogComponent,{
+      width: '840px',
+      data: {id, action},
+    })
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.loadRequests()
     });
   }
+  
+  loadRequests() {  
+    this.serviceRequest.index()
+        .subscribe(  
+            x => {  
+              console.log(x.data)
+      this.dataSource = new MatTableDataSource();  
+      this.dataSource.data = x.data;  
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
 
-  myFilter = (d: Date | null): boolean => {
-    const day = (d || new Date()).getDay();
-    // Prevent Saturday and Sunday from being selected.
-    return day !== 0 && day !== 6;
+    },  
+    error => {  
+      console.log('Error' + error);  
+    });  
   }
-
 }
+
