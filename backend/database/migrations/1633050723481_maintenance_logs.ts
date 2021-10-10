@@ -9,7 +9,6 @@ export default class MaintenanceLogs extends BaseSchema {
       table.integer('service_type_id')
       table.integer('responsible_id')
       table.integer('maintenance_status_id')
-      table.integer('status_id')
       table.dateTime('service_date', { useTz: true })
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true }).defaultTo(this.now())

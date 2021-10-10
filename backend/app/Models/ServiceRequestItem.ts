@@ -23,6 +23,9 @@ export default class ServiceRequestItem extends BaseModel {
   @column()
   public serviceDetails: string
 
+  @column()
+  public itemStatusId: number
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 

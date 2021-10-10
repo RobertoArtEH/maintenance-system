@@ -35,6 +35,9 @@ export default class User extends BaseModel {
   @column()
   public isAdmin: number
 
+  @column()
+  public isActive: number
+
   @column({ serializeAs: null })
   public password: string
 

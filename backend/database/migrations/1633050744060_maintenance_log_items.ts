@@ -11,7 +11,7 @@ export default class MaintenanceLogItems extends BaseSchema {
       table.integer('quantity')
       table.text('description')
       table.text('suggetions')
-      table.integer('status_id')
+      table.integer('item_status_id')
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true }).defaultTo(this.now())
     })

@@ -13,7 +13,7 @@ export default class UsersSchema extends BaseSchema {
       table.integer('shift_id').notNullable()
       table.string('email', 255).notNullable()
       table.integer('is_admin', 1)
-      table.integer('status_id')
+      table.integer('is_active', 1)
       table.string('password', 180).notNullable()
       table.string('remember_me_token').nullable()
       table.timestamp('created_at', { useTz: true }).notNullable()
