@@ -15,6 +15,7 @@ import { UserDialogComponent } from './components/sections/dialogs/user-dialog/u
 import { RequestComponent } from './components/sections/requests/request/request.component';
 import { PendingRequestComponent } from './components/sections/requests/pending-request/pending-request.component';
 import { SignedRequestComponent } from './components/sections/requests/signed-request/signed-request.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,14 +29,15 @@ import { SignedRequestComponent } from './components/sections/requests/signed-re
     UserDialogComponent,
     RequestComponent,
     PendingRequestComponent,
-    SignedRequestComponent
+    SignedRequestComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
