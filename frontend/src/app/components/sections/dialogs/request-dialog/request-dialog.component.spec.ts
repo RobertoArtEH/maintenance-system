@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SignedRequestComponent } from './signed-request.component';
+import { RequestDialogComponent } from './request-dialog.component';
 
-describe('SignedRequestComponent', () => {
-  let component: SignedRequestComponent;
-  let fixture: ComponentFixture<SignedRequestComponent>;
+describe('RequestDialogComponent', () => {
+  let component: RequestDialogComponent;
+  let fixture: ComponentFixture<RequestDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SignedRequestComponent ]
+      declarations: [ RequestDialogComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SignedRequestComponent);
+    fixture = TestBed.createComponent(RequestDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
