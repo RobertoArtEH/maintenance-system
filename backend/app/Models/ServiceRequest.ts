@@ -63,7 +63,7 @@ export default class ServiceRequest extends BaseModel {
 
   @beforeFetch()
   @beforeFind()
-  public static fetchItems(query: ModelQueryBuilderContract<typeof ServiceRequest>) { 
+  public static fetchItems (query: ModelQueryBuilderContract<typeof ServiceRequest>) {
     query.preload('items', (query) => {
       query.where('item_status_id', '!=', Constants.STATUS_CANCEL)
     })
