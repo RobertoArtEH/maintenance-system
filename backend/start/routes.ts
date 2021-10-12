@@ -47,3 +47,7 @@ Route.get('areas/index', 'AreasController.index')
 
 // Roles 
 Route.get('roles/index', 'RolesController.index')
+
+// Calendars 
+Route.get('calendars/index', 'CalendarsController.index')
+Route.post('calendar/save', 'CalendarsController.save')
