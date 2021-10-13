@@ -1,21 +1,18 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, HasOne, hasOne } from '@ioc:Adonis/Lucid/Orm'
 
-export default class MaintenanceLogItem extends BaseModel {
+export default class CalendarItem extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
   @column()
-  public maintenanceLogId: number
+  public calendarId: number
 
   @column()
-  public quantity: number
+  public responsibleId: number
 
-  @column()
-  public description: string
-
-  @column()
-  public suggetions: string
+  @column.dateTime()
+  public scheduledDate: DateTime
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
