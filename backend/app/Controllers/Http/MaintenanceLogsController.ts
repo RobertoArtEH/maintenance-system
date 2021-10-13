@@ -6,7 +6,7 @@ import MaintenanceLogItem from 'App/Models/MaintenanceLogItem'
 export default class MaintenanceLogsController {
   public async index ({ request, response}: HttpContextContract) {
     try{
-      const maintenanceLogs = await MaintenanceLog.query().preload('items').preload('responsible')
+      const maintenanceLogs = await MaintenanceLog.query().preload('items').preload('responsible').preload('status')
       return response.ok({ status: true, data: maintenanceLogs })
     } catch (error) {
       console.log(error.message)
