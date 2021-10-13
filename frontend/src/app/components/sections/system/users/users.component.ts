@@ -6,7 +6,6 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { UserDialogComponent } from '../../dialogs/user-dialog/user-dialog.component';
 import { UserService } from '../../../../services/users/user.service';
-import { DatosUsuario } from 'src/app/interfaces/interfaces';
 import { confirmDialog } from '../../../resources/alert';
 
 @Component({
@@ -15,8 +14,6 @@ import { confirmDialog } from '../../../resources/alert';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
-
-  user: DatosUsuario[] = [];
 
   userForm: FormGroup;
   displayedColumns= ['name','email','career', 'shift', 'role', 'actions'];
