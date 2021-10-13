@@ -103,4 +103,23 @@ export default class MaintenanceLogsController {
     const maintenanceLog = await MaintenanceLog.query().where('id', params.id).delete()
     return
   }
+
+  public async cancel ({ request, response }) {
+    try {
+      const id = request.param('id', 0)
+
+      const service = await MaintenanceLog.find(id)
+
+      if (service) {
+        service.maintenanceStatusId = Constants.STATUS_CANCEL
+        service.save()
+      }
+
+      return response.ok({ status: true, data: [], message: 'El registro de mantenimiento se canceló con éxito.' })
+    } catch (error) {
+      console.log(error.message)
+
+      return response.badRequest({ status: false, message: 'Ocurrió un error al guardar el registro de mantenimiento.'})
+    }
+  }
 }

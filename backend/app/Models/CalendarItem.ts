@@ -1,5 +1,6 @@
 import { DateTime } from 'luxon'
 import { BaseModel, column, HasOne, hasOne } from '@ioc:Adonis/Lucid/Orm'
+import User from './User'
 
 export default class CalendarItem extends BaseModel {
   @column({ isPrimary: true })
@@ -19,4 +20,10 @@ export default class CalendarItem extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
+
+  @hasOne(() => User, {
+    localKey: 'responsibleId',
+    foreignKey: 'id',
+  })
+  public responsible: HasOne<typeof User>
 }

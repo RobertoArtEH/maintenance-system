@@ -5,23 +5,25 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { confirmDialog, errorMessage, successDialog } from 'src/app/components/resources/alert';
-import { ServiceRequestService } from 'src/app/services/serviceRequest/service-request.service';
-import { RequestDialogComponent } from '../../dialogs/request-dialog/request-dialog.component';
+import { MaintenanceService } from 'src/app/services/maintenance/maintenance.service';
+import { MaintenanceDialogComponent } from '../dialogs/maintenance-dialog/maintenance-dialog.component';
+
 
 @Component({
-  selector: 'app-request',
-  templateUrl: './request.component.html',
-  styleUrls: ['./request.component.css']
+  selector: 'app-maintenance',
+  templateUrl: './maintenance.component.html',
+  styleUrls: ['./maintenance.component.css']
 })
-export class RequestComponent implements OnInit {
-  displayedColumns= ['folio','userRequest','serviceDate','area', 'status', 'accept', 'cancel', 'edit'];
+
+export class MaintenanceComponent implements OnInit {
+  displayedColumns= ['serviceType','userRequest','serviceDate','status', 'accept', 'cancel', 'edit'];
   dataSource: MatTableDataSource<any>;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  constructor(private dialogRef: MatDialog, private serviceRequest: ServiceRequestService) { }
+  constructor(private dialogRef: MatDialog, private maintenanceService: MaintenanceService) { }
 
   ngOnInit() {
-    this.loadRequests();
+    this.loadMaintenances();
   }
 
   filter(event: Event) {
@@ -30,21 +32,20 @@ export class RequestComponent implements OnInit {
   }
 
    openDialog(action: boolean, id?){   
-    const dialogRef = this.dialogRef.open(RequestDialogComponent,{
+    const dialogRef = this.dialogRef.open(MaintenanceDialogComponent,{
       width: '840px',
       data: {id, action},
     })
 
     dialogRef.afterClosed().subscribe(result => {
-      this.loadRequests()
+      this.loadMaintenances()
     });
   }
   
-  loadRequests() {  
-    this.serviceRequest.index()
+  loadMaintenances() {  
+    this.maintenanceService.index()
         .subscribe(  
             x => {  
-              console.log(x.data)
       this.dataSource = new MatTableDataSource();  
       this.dataSource.data = x.data;  
       this.dataSource.sort = this.sort;
@@ -57,12 +58,12 @@ export class RequestComponent implements OnInit {
   }
 
   cancelRequest(id){
-    confirmDialog('¿Estás seguro que deseas cancelar esta solicitud?', 'Cancelar', 'Aceptar').then((result) => {
+    confirmDialog('¿Estás seguro que deseas cancelar este mantenimiento?', 'Cancelar', 'Aceptar').then((result) => {
       if (result.value) {
-        this.serviceRequest.cancel(id).subscribe( res => {
+        this.maintenanceService.cancel(id).subscribe( res => {
           if (res.status){
             successDialog(res.message).then(() => {
-              this.loadRequests()
+              this.loadMaintenances()
             })
           } else{
             errorMessage(res.message)
@@ -75,12 +76,12 @@ export class RequestComponent implements OnInit {
   }
 
   acceptRequest(id){
-    confirmDialog('¿Estás seguro que deseas aceptar esta solicitud?', 'Cancelar', 'Aceptar').then((result) => {
+    confirmDialog('¿Estás seguro que deseas aceptar este mantenimiento?', 'Cancelar', 'Aceptar').then((result) => {
       if (result.value) {
-        this.serviceRequest.accept(id).subscribe( res => {
+        this.maintenanceService.accept(id).subscribe( res => {
           if (res.status){
             successDialog(res.message).then(() => {
-              this.loadRequests()
+              this.loadMaintenances()
             })
           } else{
             errorMessage(res.message)
@@ -93,12 +94,12 @@ export class RequestComponent implements OnInit {
   }
 
   finishRequest(id){
-    confirmDialog('¿Estás seguro que deseas finalizar esta solicitud?', 'Cancelar', 'Aceptar').then((result) => {
+    confirmDialog('¿Estás seguro que deseas finalizar este mantenimiento?', 'Cancelar', 'Aceptar').then((result) => {
       if (result.value) {
-        this.serviceRequest.finish(id).subscribe( res => {
+        this.maintenanceService.finish(id).subscribe( res => {
           if (res.status){
             successDialog(res.message).then(() => {
-              this.loadRequests()
+              this.loadMaintenances()
             })
           } else{
             errorMessage(res.message)
@@ -110,4 +111,3 @@ export class RequestComponent implements OnInit {
     })
   }
 }
-
