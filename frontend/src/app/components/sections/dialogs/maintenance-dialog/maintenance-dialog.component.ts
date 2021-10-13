@@ -8,38 +8,39 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { errorMessage, successDialog } from 'src/app/components/resources/alert';
 import { Area } from 'src/app/interfaces/area/area';
-import { ServiceRequest } from 'src/app/interfaces/services/service-request';
-import { ServiceRequestItem } from 'src/app/interfaces/services/service-request-item';
+import { Maintenance } from 'src/app/interfaces/maintenance/maintenance';
+import { MaintenanceItem } from 'src/app/interfaces/maintenance/maintenance-item';
+import { ServiceType } from 'src/app/interfaces/maintenance/service-type';
 import { User } from 'src/app/interfaces/user/user';
 import { AreasService } from 'src/app/services/areas/areas.service';
-import { ServiceRequestService } from 'src/app/services/serviceRequest/service-request.service';
-import { RequestItemComponent } from '../request-item/request-item.component';
+import { MaintenanceService } from 'src/app/services/maintenance/maintenance.service';
+import { MaintenanceItemComponent } from '../maintenance-item/maintenance-item.component';
 
 @Component({
-  selector: 'app-request-dialog',
-  templateUrl: './request-dialog.component.html',
-  styleUrls: ['./request-dialog.component.css']
+  selector: 'app-maintenance-dialog',
+  templateUrl: './maintenance-dialog.component.html',
+  styleUrls: ['./maintenance-dialog.component.css']
 })
-export class RequestDialogComponent implements OnInit {
-  requestForm: FormGroup;
-  areas: Area[] = []
+export class MaintenanceDialogComponent implements OnInit {
+  maintenanceForm: FormGroup;
   users: User[] = []
-  items: ServiceRequestItem[] = []
-  request: ServiceRequest
-  displayedColumns= ['index', 'item_name','description','general_ubication', 'specific_ubication', 'service_details', 'edit', 'delete'];
+  items: MaintenanceItem[] = []
+  serviceTypes: ServiceType[] = []
+  maintenance: Maintenance
+  displayedColumns= ['index', 'quantity','description','suggetions', 'edit', 'delete'];
   dataSource: MatTableDataSource<any>;
   pipe = new DatePipe('en-US');
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   constructor(private areasService: AreasService, private dialogReff: MatDialog,
-    private serviceRequest: ServiceRequestService, private router: Router, private dialogRef: MatDialogRef<RequestDialogComponent>,
+    private maintenanceService: MaintenanceService, private router: Router, private dialogRef: MatDialogRef<MaintenanceDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,) {dialogRef.disableClose = true; this.buildForm(); }
 
   ngOnInit(): void {
     this.buildForm()
-    this.loadAreas()
     this.loadUsers()
+    this.loadServiceType()
   
     if (this.data.id != null) {
       this.show()
@@ -47,33 +48,24 @@ export class RequestDialogComponent implements OnInit {
   }
 
   buildForm(): void {
-    this.requestForm = new FormGroup({
+    this.maintenanceForm = new FormGroup({
       id: new FormControl(''),
-      folio: new FormControl('',Validators.required),
-      area_id: new FormControl('',Validators.required),
       serviceDate: new FormControl('',Validators.required),
       responsible_id:  new FormControl('',Validators.required),
+      serviceTypeId:  new FormControl('',Validators.required),
     });
   }
 
-  loadAreas() {  
-    this.areasService.index()  
-        .subscribe(  
-            x => {  
-      this.areas = x
-    },  
-    error => {  
-      console.log('Error' + error);  
-    });  
+  loadServiceType(){
+    this.serviceTypes.push({id: 1, name: "Preventivo"}, { id: 2, name: "Correctivo"})
   }
 
   show(){
-    this.serviceRequest.show(this.data.id).subscribe( res => {
-          this.requestForm.get('id').setValue(res.data.id)
-          this.requestForm.get('folio').setValue(res.data.folio)
-          this.requestForm.get('area_id').setValue(res.data.area_id)
-          this.requestForm.get('serviceDate').setValue(res.data.serviceDate)
-          this.requestForm.get('responsible_id').setValue(res.data.responsible_id)
+    this.maintenanceService.show(this.data.id).subscribe( res => {
+          this.maintenanceForm.get('id').setValue(res.data.id)
+          this.maintenanceForm.get('serviceTypeId').setValue(res.data.service_type_id)
+          this.maintenanceForm.get('serviceDate').setValue(res.data.serviceDate)
+          this.maintenanceForm.get('responsible_id').setValue(res.data.responsible_id)
           this.items = res.data.items
 
           this.loadItem(this.items)
@@ -81,14 +73,12 @@ export class RequestDialogComponent implements OnInit {
   }
 
   update(){
-    if (this.requestForm.valid) {
-      this.request = this.requestForm.value
-      this.request.items = this.items
-      this.request.comments = ""
-      this.request.serviceDate  = this.pipe.transform(this.request.serviceDate, 'yyyy-MM-dd 00:00:00');
-      this.request.service_status_id = 1
+    if (this.maintenanceForm.valid) {
+      this.maintenance = this.maintenanceForm.value
+      this.maintenance.items = this.items
+      this.maintenance.serviceDate  = this.pipe.transform(this.maintenance.serviceDate, 'yyyy-MM-dd 00:00:00');
 
-      this.serviceRequest.save(this.request).subscribe( res => {
+      this.maintenanceService.save(this.maintenance).subscribe( res => {
         if (res.status) {
           successDialog(res.message).then(() => {
             this.clear()
@@ -106,9 +96,10 @@ export class RequestDialogComponent implements OnInit {
   }
 
   loadUsers() {  
-    this.serviceRequest.getUsers()  
+    this.maintenanceService.getUsers()  
         .subscribe(  
             x => {  
+              console.log(x)
         for (let i = 0; i < x.data.length; i++) {
           if (x.data[i].role_id == 3){
             this.users.push(x.data[i])
@@ -120,20 +111,20 @@ export class RequestDialogComponent implements OnInit {
     });  
   }
 
-  sendRequest(){
-    this.requestForm.get('id').setValue(1)
+  sendMaintenance(){
+    this.maintenanceForm.get('id').setValue(1)
 
-    if (this.requestForm.valid) {
-      this.request = this.requestForm.value
-      this.request.items = this.items
-      this.request.comments = ""
-      this.request.serviceDate  = this.pipe.transform(this.request.serviceDate, 'yyyy-MM-dd 00:00:00');
-      this.request.service_status_id = 1
-      this.request.id = null
+    if (this.maintenanceForm.valid) {
 
-      this.serviceRequest.save(this.request).subscribe( res => {
+      this.maintenance = this.maintenanceForm.value
+      this.maintenance.maintenanceStatusId = 1
+      this.maintenance.items = this.items
+      this.maintenance.serviceDate  = this.pipe.transform(this.maintenance.serviceDate, 'yyyy-MM-dd 00:00:00');
+      this.maintenance.id = null
+
+      this.maintenanceService.save(this.maintenance).subscribe( res => {
         if (res.status) {
-          successDialog(res.message).then(() => {
+          successDialog("El mantenimiento se guardó con éxito.").then(() => {
             this.clear()
             this.items = []
             this.loadItem(this.items)
@@ -165,7 +156,7 @@ export class RequestDialogComponent implements OnInit {
   }
 
   openDialog(action: boolean, data?, i?){   
-    const dialogRef = this.dialogReff.open(RequestItemComponent,{
+    const dialogRef = this.dialogReff.open(MaintenanceItemComponent,{
       width: '640px',
       data: {data, action, i},
     })
@@ -175,11 +166,10 @@ export class RequestDialogComponent implements OnInit {
         this.items.push(result.item)
         this.items[result.index] = result.item
         this.items[result.index].id = null
-        this.items[result.index].item_status_id = 1
       } else{
         this.items[result.index] = result.item
         this.items[result.index].id = null
-        this.items[result.index].item_status_id = 1
+       
       }
       this.loadItem(this.items)
     });
@@ -193,11 +183,10 @@ export class RequestDialogComponent implements OnInit {
   }
 
   clear(){
-    this.requestForm.reset()
+    this.maintenanceForm.reset()
   }
 
   close() {
     this.dialogRef.close();
   }
 }
-

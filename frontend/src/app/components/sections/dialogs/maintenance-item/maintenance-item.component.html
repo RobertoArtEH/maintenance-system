@@ -1,0 +1,39 @@
+<div>
+    <div class="add-title">
+      <h2 class="primary" *ngIf="data.action== true">Editar Item</h2>
+      <h2 class="primary" *ngIf="data.action== false">Crear Item</h2>
+    </div>
+    <div>
+      <form [formGroup]="itemForm">
+        <mat-grid-list cols="2"rowHeight="85px">
+          <mat-grid-tile>
+            <mat-form-field appearance="outline" class="field-full-width">
+                <mat-label>Cantidad</mat-label>
+                <input matInput formControlName="quantity" type="number" placeholder="Ubicación general" required>
+                <mat-icon matSuffix>number</mat-icon>
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-form-field appearance="outline" class="field-full-width">
+                <mat-label>Descripción</mat-label>
+                <input matInput formControlName="description" type="text" placeholder="Ubicación específica" required>
+                <mat-icon matSuffix>edit</mat-icon>
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-form-field appearance="outline" class="field-full-width">
+                <mat-label>Sugerencias</mat-label>
+                <input matInput formControlName="suggetions" type="text" placeholder="Trabajo y/o servicio requerido" required>
+                <mat-icon matSuffix>work</mat-icon>
+            </mat-form-field>
+          </mat-grid-tile>
+        </mat-grid-list>
+  
+        <div class="btn-sec">
+          <button mat-raised-button *ngIf="data.action== true" class="btnDialog" (click)="update()">Actualizar</button>
+          <button mat-raised-button *ngIf="data.action== false" class="btnDialog"  (click)="add()">Guardar</button>
+          <button mat-raised-button type="button" class="btnDialogCancel" (click)="close()">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
