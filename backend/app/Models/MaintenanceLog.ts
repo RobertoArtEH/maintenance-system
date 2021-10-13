@@ -1,7 +1,7 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, hasMany, HasMany, hasOne, HasOne } from '@ioc:Adonis/Lucid/Orm'
 import MaintenanceLogItem from './MaintenanceLogItem'
-
+import User from './User'
 
 export default class MaintenanceLog extends BaseModel {
   @column({ isPrimary: true })
@@ -30,4 +30,10 @@ export default class MaintenanceLog extends BaseModel {
     foreignKey: 'maintenanceLogId',
   })
   public items: HasMany<typeof MaintenanceLogItem>
+
+  @hasOne(() => User, {
+    localKey: 'responsibleId',
+    foreignKey: 'id',
+  })
+  public responsible: HasOne<typeof User>
 }

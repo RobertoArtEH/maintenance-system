@@ -4,9 +4,15 @@ import MaintenanceLog from 'App/Models/MaintenanceLog'
 import MaintenanceLogItem from 'App/Models/MaintenanceLogItem'
 
 export default class MaintenanceLogsController {
-  public async index ({ request}: HttpContextContract) {
-    const maintenanceLogs = await MaintenanceLog.query().preload('items')
-    return maintenanceLogs
+  public async index ({ request, response}: HttpContextContract) {
+    try{
+      const maintenanceLogs = await MaintenanceLog.query().preload('items').preload('responsible')
+      return response.ok({ status: true, data: maintenanceLogs })
+    } catch (error) {
+      console.log(error.message)
+      // eslint-disable-next-line max-len
+      return response.badRequest({ status: false, message: 'Ocurrió un error al consultar los registros de mantenimiento.'})
+    }
   }
 
   public async show ({ request, params}: HttpContextContract) {
