@@ -2,6 +2,8 @@ import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 import MaintenanceLog from 'App/Models/MaintenanceLog'
 import MaintenanceLogItem from 'App/Models/MaintenanceLogItem'
+//import { Constants } from 'constants'
+import { Constants } from '../../../constants'
 
 export default class MaintenanceLogsController {
   public async index ({ request, response}: HttpContextContract) {
@@ -71,6 +73,30 @@ export default class MaintenanceLogsController {
     maintenanceLog.serviceDate = request.input('serviceDate')
     await maintenanceLog.save()
     return maintenanceLog
+  }
+
+  public async find ({ request, response }) {
+    try {
+      const id = request.param('id', 0)
+
+      const maintenance = await MaintenanceLog.query()
+        .preload('status')
+        .preload('items')
+        .preload('responsible')
+        .where('id', id)
+        .first()
+
+      if (maintenance && maintenance.maintenanceStatusId === Constants.STATUS_CANCEL) {
+        return response.unauthorized({ status: false, message: 'El registro de mantenimiento se encuentra cancelado.' })
+      }
+
+      return response.ok({ status: true, data: maintenance })
+    } catch (error) {
+      console.log(error.message)
+
+      // eslint-disable-next-line max-len
+      return response.badRequest({ status: false, message: 'Ocurrió un error al consultar los registros de mantenimiento.' })
+    }
   }
 
   public async destroy ({response, auth, request, params}: HttpContextContract) {

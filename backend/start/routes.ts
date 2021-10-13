@@ -39,6 +39,7 @@ Route.post('service/cancel/:id', 'ServiceRequestsController.cancel')
 
 // Maintenance Logs 
 Route.get('maintenance/index', 'MaintenanceLogsController.index')
+Route.get('maintenance/load/:id', 'MaintenanceLogsController.find')
 Route.post('maintenance/save', 'MaintenanceLogsController.save')
 Route.post('maintenance/delete', 'MaintenanceLogsController.delete')
 
