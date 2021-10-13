@@ -43,6 +43,8 @@ Route.post('service/cancel/:id', 'ServiceRequestsController.cancel')
 Route.get('maintenance/index', 'MaintenanceLogsController.index')
 Route.get('maintenance/load/:id', 'MaintenanceLogsController.find')
 Route.post('maintenance/save', 'MaintenanceLogsController.save')
+Route.post('maintenance/accept/:id', 'MaintenanceLogsController.accept')
+Route.post('maintenance/finish/:id', 'MaintenanceLogsController.finish')
 Route.post('maintenance/cancel/:id', 'MaintenanceLogsController.cancel')
 
 // Areas 
