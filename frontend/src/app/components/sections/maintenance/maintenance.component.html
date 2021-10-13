@@ -51,9 +51,9 @@
                         <ng-container matColumnDef="accept">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-content"> Acciones </th>
                             <td mat-cell *matCellDef="let maintenance"><button *ngIf="maintenance.status.name == 'Pendiente'"
-                                mat-raised-button class="btnAccept"><mat-icon matSuffix>check</mat-icon></button>
+                                mat-raised-button class="btnAccept" (click)="acceptRequest(maintenance.id)"><mat-icon matSuffix>check</mat-icon></button>
                                 <button *ngIf="maintenance.status.name == 'Aceptado'"
-                                mat-raised-button class="btnAccept">Finalizar</button></td>
+                                mat-raised-button class="btnSigned" (click)="finishRequest(maintenance.id)">Finalizar</button></td>
                         </ng-container>
   
                         <ng-container matColumnDef="cancel">
@@ -64,7 +64,7 @@
                         </ng-container>
                         <ng-container matColumnDef="edit">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-content"> Editar </th>
-                            <td mat-cell *matCellDef="let maintenance"><button title="Editar" mat-raised-button class="btnEdit" (click)="openDialog(true, maintenance.id)"  *ngIf="maintenance.status.name != 'Cancelado'">
+                            <td mat-cell *matCellDef="let maintenance"><button title="Editar" mat-raised-button class="btnEdit" (click)="openDialog(true, maintenance.id)"  *ngIf="maintenance.status.name == 'Pendiente'">
                             <mat-icon matSuffix>edit</mat-icon></button> </td>
                         </ng-container>
                         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
