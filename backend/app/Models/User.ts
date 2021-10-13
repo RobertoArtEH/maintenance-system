@@ -6,10 +6,17 @@ import {
   BaseModel,
   hasOne,
   HasOne,
+  beforeFetch,
+  beforeFind,
+  ModelQueryBuilderContract,
+  hasMany,
+  HasMany,
 } from '@ioc:Adonis/Lucid/Orm'
 
+import RolePageFaculty from './RolePageFaculty'
 import Role from './Role'
 import Area from './Area'
+import Database from '@ioc:Adonis/Lucid/Database'
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
@@ -69,4 +76,21 @@ export default class User extends BaseModel {
     foreignKey: 'id',
   })
   public area: HasOne<typeof Area>
+
+  @hasMany(() => RolePageFaculty, {
+    localKey: 'roleId',
+    foreignKey: 'roleId',
+  })
+  public pageFaculties: HasMany<typeof RolePageFaculty>
+
+  @beforeFetch()
+  @beforeFind()
+  public static fetchItems (query: ModelQueryBuilderContract<typeof User>) {
+    query
+      .preload('role')
+      .preload('area')
+      .preload('pageFaculties', (pageQuery) => {
+        // pageQuery.groupBy('page_id')
+      })
+  }
 }

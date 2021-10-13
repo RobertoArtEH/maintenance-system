@@ -25,34 +25,34 @@ Route.post('login', 'AuthController.login')
 Route.get('logout', 'AuthController.logout')
 Route.post('register', 'AuthController.register')
 
-/** User */
-Route.get('users/index', 'UsersController.index')
-Route.post('user/save', 'UsersController.save')
-Route.get('user/load/:id', 'UsersController.find')
-Route.post('user/delete', 'UsersController.delete')
+Route.group(() => {
+  /** Users */
+  Route.get('users/index', 'UsersController.index')
+  Route.post('user/save', 'UsersController.save')
+  Route.get('user/load/:id', 'UsersController.find')
+  Route.post('user/delete', 'UsersController.delete')
 
-/** Request services */
-Route.get('services/index', 'ServiceRequestsController.index')
-Route.get('service/load/:id', 'ServiceRequestsController.find')
-Route.post('service/save', 'ServiceRequestsController.save')
-Route.post('service/accept/:id', 'ServiceRequestsController.accept')
-Route.post('service/finish/:id', 'ServiceRequestsController.finish')
-Route.post('service/cancel/:id', 'ServiceRequestsController.cancel')
+  /** Request services */
+  Route.get('services/index', 'ServiceRequestsController.index')
+  Route.get('service/load/:id', 'ServiceRequestsController.find')
+  Route.post('service/save', 'ServiceRequestsController.save')
+  Route.post('service/accept/:id', 'ServiceRequestsController.accept')
+  Route.post('service/finish/:id', 'ServiceRequestsController.finish')
+  Route.post('service/cancel/:id', 'ServiceRequestsController.cancel')
 
-// Maintenance Logs 
-Route.get('maintenance/index', 'MaintenanceLogsController.index')
-Route.get('maintenance/load/:id', 'MaintenanceLogsController.find')
-Route.post('maintenance/save', 'MaintenanceLogsController.save')
-Route.post('maintenance/accept/:id', 'MaintenanceLogsController.accept')
-Route.post('maintenance/finish/:id', 'MaintenanceLogsController.finish')
-Route.post('maintenance/cancel/:id', 'MaintenanceLogsController.cancel')
+  /** Maintenance Logs */
+  Route.get('maintenance/index', 'MaintenanceLogsController.index')
+  Route.get('maintenance/load/:id', 'MaintenanceLogsController.find')
+  Route.post('maintenance/save', 'MaintenanceLogsController.save')
+  Route.post('maintenance/accept/:id', 'MaintenanceLogsController.accept')
+  Route.post('maintenance/finish/:id', 'MaintenanceLogsController.finish')
+  Route.post('maintenance/cancel/:id', 'MaintenanceLogsController.cancel')
 
-// Areas 
-Route.get('areas/index', 'AreasController.index')
+  /** Calendars */
+  Route.get('calendars/index', 'CalendarsController.index')
+  Route.post('calendar/save', 'CalendarsController.save')
 
-// Roles 
-Route.get('roles/index', 'RolesController.index')
-
-// Calendars 
-Route.get('calendars/index', 'CalendarsController.index')
-Route.post('calendar/save', 'CalendarsController.save')
+  /** System */
+  Route.get('areas/index', 'AreasController.index')
+  Route.get('roles/index', 'RolesController.index')
+})//.middleware('auth:api')

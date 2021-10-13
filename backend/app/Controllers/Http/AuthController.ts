@@ -8,8 +8,16 @@ export default class AuthController {
 
     try {
       const token = await auth.use('api').attempt(email, password)
-      return response.ok({ status: true, data: token, message: '' })
-    } catch {
+      const user = await auth.use('api').user
+
+      if (user && !user.isActive) {
+        return response.unauthorized({ status: false, message: 'El usuario se encuentra bloqueado.' })
+      }
+
+      return response.ok({ status: true, data: { token, user }, message: '' })
+    } catch (error) {
+      console.log(error.message)
+
       return response.badRequest({ status: false, message: 'Credenciales incorrectas.' })
     }
   }
