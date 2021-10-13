@@ -7,8 +7,9 @@ export default class FacultySeeder extends BaseSeeder {
       { name: 'ver' },
       { name: 'crear' },
       { name: 'editar' },
-      { name: 'eliminar' },
+      { name: 'cancelar' },
       { name: 'autorizar' },
+      { name: 'rechazar' },
       { name: 'finalizar' },
     ])
   }

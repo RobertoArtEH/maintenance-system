@@ -35,6 +35,8 @@ Route.post('user/delete', 'UsersController.delete')
 Route.get('services/index', 'ServiceRequestsController.index')
 Route.get('service/load/:id', 'ServiceRequestsController.find')
 Route.post('service/save', 'ServiceRequestsController.save')
+Route.post('service/accept/:id', 'ServiceRequestsController.accept')
+Route.post('service/finish/:id', 'ServiceRequestsController.finish')
 Route.post('service/cancel/:id', 'ServiceRequestsController.cancel')
 
 // Maintenance Logs 
