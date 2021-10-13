@@ -26,6 +26,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatNativeDateModule} from '@angular/material/core';
+import {MatChipsModule} from '@angular/material/chips'
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import {MatNativeDateModule} from '@angular/material/core';
       MatCheckboxModule,
       MatButtonToggleModule,
       MatGridListModule,
-      MatNativeDateModule
+      MatNativeDateModule,
+      MatChipsModule
   ],
   exports:[
       MatButtonModule,
@@ -81,7 +83,8 @@ import {MatNativeDateModule} from '@angular/material/core';
       MatSortModule,
       MatCheckboxModule,
       MatButtonToggleModule,
-      MatNativeDateModule
+      MatNativeDateModule,
+      MatChipsModule
   ],
 })
 export class MaterialModule { }

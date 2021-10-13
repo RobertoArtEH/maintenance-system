@@ -52,3 +52,16 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     color: #fff;
     background-color: #67152B;
 }
+
+.mat-button, .mat-icon-button, .mat-stroked-button {
+    color: black;
+    background: transparent;
+}
+
+.mat-table thead, .mat-table tbody, .mat-table tfoot, mat-header-row, mat-row, mat-footer-row, [mat-header-row], [mat-row], [mat-footer-row], .mat-table-sticky {
+    background: rgb(233, 233, 233);
+}
+
+.mat-cell, .mat-footer-cell {
+    color: black;
+}

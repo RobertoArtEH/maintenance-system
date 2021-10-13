@@ -14,6 +14,53 @@
   color: white;
 }
 
+.btnEdit{
+  margin-left: 5px;
+  margin-right: 5px;
+  background: #67152b;
+  color: white;
+}
+
+.btnSigned{
+  margin-left: 5px;
+  margin-right: 5px;
+  background: #236715;
+  color: white;
+  text-align: center;
+}
+
+.btnPending{
+  margin-left: 5px;
+  margin-right: 5px;
+  background: #e6c71b;
+  color: white;
+  text-align: center;
+}
+
+.btnCancel{
+  margin-left: 5px;
+  margin-right: 5px;
+  background: #67152b;
+  color: white;
+  text-align: center;
+}
+
+.btnReject{
+  margin-left: 5px;
+  margin-right: 5px;
+  background: #67152b;
+  color: white;
+  text-align: center;
+}
+
+.btnAccept{
+  margin-left: 5px;
+  margin-right: 5px;
+  background: #15672a;
+  color: white;
+  text-align: center;
+}
+
 .btnDialogCancel {
   margin: 5px;
 }
