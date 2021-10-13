@@ -41,6 +41,7 @@ Route.post('service/cancel/:id', 'ServiceRequestsController.cancel')
 
 // Maintenance Logs 
 Route.get('maintenance/index', 'MaintenanceLogsController.index')
+Route.get('maintenance/load/:id', 'MaintenanceLogsController.find')
 Route.post('maintenance/save', 'MaintenanceLogsController.save')
 Route.post('maintenance/delete', 'MaintenanceLogsController.delete')
 
@@ -49,3 +50,7 @@ Route.get('areas/index', 'AreasController.index')
 
 // Roles 
 Route.get('roles/index', 'RolesController.index')
+
+// Calendars 
+Route.get('calendars/index', 'CalendarsController.index')
+Route.post('calendar/save', 'CalendarsController.save')

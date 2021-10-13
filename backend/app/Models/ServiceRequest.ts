@@ -1,4 +1,5 @@
 import { DateTime } from 'luxon'
+// eslint-disable-next-line max-len
 import { BaseModel, beforeFetch, beforeFind, column, HasMany, hasMany, HasOne, hasOne, ModelQueryBuilderContract } from '@ioc:Adonis/Lucid/Orm'
 import ServiceRequestItem from './ServiceRequestItem'
 import { Constants } from '../../constants'

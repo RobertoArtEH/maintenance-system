@@ -13,8 +13,8 @@ import { CalendarComponent } from './components/dashboard/calendar/calendar.comp
 import { UsersComponent } from './components/sections/system/users/users.component';
 import { UserDialogComponent } from './components/sections/dialogs/user-dialog/user-dialog.component';
 import { RequestComponent } from './components/sections/requests/request/request.component';
-import { PendingRequestComponent } from './components/sections/requests/pending-request/pending-request.component';
-import { SignedRequestComponent } from './components/sections/requests/signed-request/signed-request.component';
+import { RequestItemComponent } from './components/sections/dialogs/request-item/request-item.component';
+import { RequestDialogComponent } from './components/sections/dialogs/request-dialog/request-dialog.component';
 
 @NgModule({
   declarations: [
@@ -27,8 +27,8 @@ import { SignedRequestComponent } from './components/sections/requests/signed-re
     UsersComponent,
     UserDialogComponent,
     RequestComponent,
-    PendingRequestComponent,
-    SignedRequestComponent
+    RequestItemComponent,
+    RequestDialogComponent
   ],
   imports: [
     BrowserModule,
