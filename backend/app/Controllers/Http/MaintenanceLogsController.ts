@@ -31,16 +31,17 @@ export default class MaintenanceLogsController {
     try {
       const data = request.all()
 
-      const service = await MaintenanceLog.updateOrCreate({ id: data.id ?? null }, data)
+      const maintenanceLog = await MaintenanceLog.updateOrCreate({ id: data.id ?? null }, data)
 
       for (const item of data.items) {
-        await MaintenanceLogItem.updateOrCreate({ id: item.id ?? null }, { maintenanceLogId: service.id, ...item})
+        // eslint-disable-next-line max-len
+        await MaintenanceLogItem.updateOrCreate({ id: item.id ?? null }, { maintenanceLogId: maintenanceLog.id, ...item})
       }
 
-      return service
+      return response.ok({ status: true, data: maintenanceLog })
     } catch (error) {
-      //return response.badRequest('Ocurrió un error al guardar el registro de mantenimiento.')
-      return error.message
+      console.log(error.message)
+      return response.badRequest('Ocurrió un error al guardar el registro de mantenimiento.')
     }
   }
 
