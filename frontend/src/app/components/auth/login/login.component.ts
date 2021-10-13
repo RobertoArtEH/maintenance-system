@@ -28,10 +28,10 @@ export class LoginComponent implements OnInit {
   login(){
     if (this.loginForm.valid){
       this.authenticationService.login(this.loginForm.value).subscribe( res => {
-        this.authenticationService.setToken(res.token, res.token.refresh_token);
+  
         if (res.status){
           successDialog('Bienvenido').then(() =>{
-            this.authenticationService.setToken(res.token.token, res.token.refresh_token);
+            this.authenticationService.setToken(res.data.token.token, res.data.token.refresh_token);
             return this.router.navigate(['/home']);
           })
         } else{

@@ -16,8 +16,8 @@ export class ServiceRequestService {
     return this.http.post<any>(environment.apiBaseURL + '/service/save', data)
   }
 
-  getUsers(): Observable<User[]>{
-    return this.http.get<User[]>(environment.apiBaseURL + '/users/index')
+  getUsers(): Observable<any>{
+    return this.http.get<any>(environment.apiBaseURL + '/users/index')
   }
 
   index(): Observable<any>{
@@ -30,5 +30,13 @@ export class ServiceRequestService {
 
   cancel(id): Observable<any>{
     return this.http.post<any>(environment.apiBaseURL + '/service/cancel/' + id, "")
+  }
+  
+  accept(id): Observable<any>{
+    return this.http.post<any>(environment.apiBaseURL + '/service/accept/' + id, "")
+  }
+
+  finish(id): Observable<any>{
+    return this.http.post<any>(environment.apiBaseURL + '/service/finish/' + id, "")
   }
 }

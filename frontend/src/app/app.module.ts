@@ -15,6 +15,9 @@ import { UserDialogComponent } from './components/sections/dialogs/user-dialog/u
 import { RequestComponent } from './components/sections/requests/request/request.component';
 import { RequestItemComponent } from './components/sections/dialogs/request-item/request-item.component';
 import { RequestDialogComponent } from './components/sections/dialogs/request-dialog/request-dialog.component';
+import { MaintenanceComponent } from './components/sections/maintenance/maintenance.component';
+import { MaintenanceDialogComponent } from './components/sections/dialogs/maintenance-dialog/maintenance-dialog.component';
+import { MaintenanceItemComponent } from './components/sections/dialogs/maintenance-item/maintenance-item.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import { RequestDialogComponent } from './components/sections/dialogs/request-di
     UserDialogComponent,
     RequestComponent,
     RequestItemComponent,
-    RequestDialogComponent
+    RequestDialogComponent,
+    MaintenanceComponent,
+    MaintenanceDialogComponent,
+    MaintenanceItemComponent
   ],
   imports: [
     BrowserModule,
