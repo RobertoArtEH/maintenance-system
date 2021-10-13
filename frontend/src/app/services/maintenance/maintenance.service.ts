@@ -30,4 +30,12 @@ export class MaintenanceService {
   cancel(id): Observable<any>{
     return this.http.post<any>(environment.apiBaseURL + '/maintenance/cancel/' + id, "")
   }
+
+  accept(id): Observable<any>{
+    return this.http.post<any>(environment.apiBaseURL + '/maintenance/accept/' + id, "")
+  }
+
+  finish(id): Observable<any>{
+    return this.http.post<any>(environment.apiBaseURL + '/maintenance/finish/' + id, "")
+  }
 }

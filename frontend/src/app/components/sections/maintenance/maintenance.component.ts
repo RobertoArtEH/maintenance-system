@@ -58,9 +58,45 @@ export class MaintenanceComponent implements OnInit {
   }
 
   cancelRequest(id){
-    confirmDialog('¿Estás seguro que deseas cancelar esta solicitud?', 'Cancelar', 'Aceptar').then((result) => {
+    confirmDialog('¿Estás seguro que deseas cancelar este mantenimiento?', 'Cancelar', 'Aceptar').then((result) => {
       if (result.value) {
         this.maintenanceService.cancel(id).subscribe( res => {
+          if (res.status){
+            successDialog(res.message).then(() => {
+              this.loadMaintenances()
+            })
+          } else{
+            errorMessage(res.message)
+          }
+        }, error => {
+          errorMessage(error)
+        })
+      }
+    })
+  }
+
+  acceptRequest(id){
+    confirmDialog('¿Estás seguro que deseas aceptar este mantenimiento?', 'Cancelar', 'Aceptar').then((result) => {
+      if (result.value) {
+        this.maintenanceService.accept(id).subscribe( res => {
+          if (res.status){
+            successDialog(res.message).then(() => {
+              this.loadMaintenances()
+            })
+          } else{
+            errorMessage(res.message)
+          }
+        }, error => {
+          errorMessage(error)
+        })
+      }
+    })
+  }
+
+  finishRequest(id){
+    confirmDialog('¿Estás seguro que deseas finalizar este mantenimiento?', 'Cancelar', 'Aceptar').then((result) => {
+      if (result.value) {
+        this.maintenanceService.finish(id).subscribe( res => {
           if (res.status){
             successDialog(res.message).then(() => {
               this.loadMaintenances()

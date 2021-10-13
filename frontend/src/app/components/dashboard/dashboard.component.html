@@ -6,19 +6,20 @@
       <mat-toolbar class="title"><img src="/assets/icons/logo_2.png"/></mat-toolbar>
       <mat-accordion>
     <mat-expansion-panel>
-      <mat-expansion-panel-header class="section"><mat-icon svgIcon="account"></mat-icon>Sistema</mat-expansion-panel-header>
-      <button mat-button class="btnSection" [routerLink]="['system/users']"><mat-icon svgIcon="account-group"></mat-icon>Usuarios</button>
+      <mat-expansion-panel-header class="section"><mat-icon matSuffix>person</mat-icon>Sistema</mat-expansion-panel-header>
+      <button mat-button class="btnSection" [routerLink]="['system/users']">Usuarios</button>
     </mat-expansion-panel>
     <mat-expansion-panel>
-      <mat-expansion-panel-header class="section"><mat-icon svgIcon="calendar"></mat-icon>Calendario</mat-expansion-panel-header>
+      <mat-expansion-panel-header class="section"><mat-icon matSuffix>document</mat-icon>Calendario</mat-expansion-panel-header>
+      <button mat-button class="btnSection" [routerLink]="['calendar']">Calendario</button>
     </mat-expansion-panel>
     <mat-expansion-panel>
-      <mat-expansion-panel-header class="section"><mat-icon svgIcon="doc"></mat-icon>Solicitudes</mat-expansion-panel-header>
-      <button mat-button class="btnSection" [routerLink]="['request']"><mat-icon svgIcon="account-group"></mat-icon>Solicitudes</button>
+      <mat-expansion-panel-header class="section"><mat-icon matSuffix>work</mat-icon>Solicitudes</mat-expansion-panel-header>
+      <button mat-button class="btnSection" [routerLink]="['request']">Solicitudes</button>
     </mat-expansion-panel>
     <mat-expansion-panel>
-      <mat-expansion-panel-header class="section"><mat-icon svgIcon="doc"></mat-icon>Mantenimiento</mat-expansion-panel-header>
-      <button mat-button class="btnSection" [routerLink]="['maintenance']"><mat-icon svgIcon="account-group"></mat-icon>Mantenimiento</button>
+      <mat-expansion-panel-header class="section"><mat-icon matSuffix>settings</mat-icon>Mantenimiento</mat-expansion-panel-header>
+      <button mat-button class="btnSection" [routerLink]="['maintenance']">Mantenimiento</button>
     </mat-expansion-panel>
   </mat-accordion>
     </mat-sidenav>

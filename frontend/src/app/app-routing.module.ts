@@ -7,6 +7,7 @@ import { UsersComponent } from './components/sections/system/users/users.compone
 import { RequestComponent } from './components/sections/requests/request/request.component';
 import { AuthGuard } from './guards/auth/auth.guard';
 import { MaintenanceComponent } from './components/sections/maintenance/maintenance.component';
+import { CalendarComponent } from './components/sections/calendar/calendar.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -23,6 +24,7 @@ const routes: Routes = [
 
       {path: 'request', component: RequestComponent},
       {path: 'maintenance', component: MaintenanceComponent},
+      {path: 'calendar', component: CalendarComponent},
       
     ]
   },
