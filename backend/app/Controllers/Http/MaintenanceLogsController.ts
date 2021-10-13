@@ -104,6 +104,50 @@ export default class MaintenanceLogsController {
     return
   }
 
+  public async accept ({ request, response }) {
+    try {
+      const id = request.param('id', 0)
+
+      const maintenance = await MaintenanceLog.find(id)
+
+      if (maintenance) {
+        maintenance.maintenanceStatusId = Constants.STATUS_ACCEPT
+        maintenance.save()
+      }
+
+      return response.ok({ status: true, data: [], message: 'El registro de mantenimiento se aceptó con éxito.' })
+    } catch (error) {
+      console.log(error.message)
+
+      return response.badRequest({ status: false, message: 'Ocurrió un error al aceptar el registro de mantenimiento.'})
+    }
+  }
+
+  /**
+   * Cambiar estatus a cancelado
+   * @param int id
+   * @returns Json
+   */
+  public async finish ({ request, response }) {
+    try {
+      const id = request.param('id', 0)
+
+      const maintenance = await MaintenanceLog.find(id)
+
+      if (maintenance) {
+        maintenance.maintenanceStatusId = Constants.STATUS_FINISH
+        maintenance.save()
+      }
+
+      return response.ok({ status: true, data: [], message: 'El registro de mantenimiento se finalizó con éxito.' })
+    } catch (error) {
+      console.log(error.message)
+
+      // eslint-disable-next-line max-len
+      return response.badRequest({ status: false, message: 'Ocurrió un error al finalizar el registro de mantenimiento.'})
+    }
+  }
+
   public async cancel ({ request, response }) {
     try {
       const id = request.param('id', 0)

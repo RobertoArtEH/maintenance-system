@@ -44,7 +44,9 @@ Route.group(() => {
   Route.get('maintenance/index', 'MaintenanceLogsController.index')
   Route.get('maintenance/load/:id', 'MaintenanceLogsController.find')
   Route.post('maintenance/save', 'MaintenanceLogsController.save')
-  Route.post('maintenance/delete', 'MaintenanceLogsController.delete')
+  Route.post('maintenance/accept/:id', 'MaintenanceLogsController.accept')
+  Route.post('maintenance/finish/:id', 'MaintenanceLogsController.finish')
+  Route.post('maintenance/cancel/:id', 'MaintenanceLogsController.cancel')
 
   /** Calendars */
   Route.get('calendars/index', 'CalendarsController.index')
