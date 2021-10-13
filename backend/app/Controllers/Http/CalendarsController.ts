@@ -6,7 +6,12 @@ import CalendarItem from 'App/Models/CalendarItem'
 export default class CalendarsController {
   public async index ({ response }) {
     try {
-      const calendars = await Calendar.query().preload('items')
+      const calendars = await Calendar.query().preload('items', (itemsQuery) => {
+        itemsQuery.preload('responsible', (commentsQuery) => {
+          commentsQuery.select('*')
+        })
+      })
+
       return response.ok({ status: true, data: calendars })
     } catch (error) {
       console.log(error.message)
