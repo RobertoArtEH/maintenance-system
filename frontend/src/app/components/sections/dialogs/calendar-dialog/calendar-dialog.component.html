@@ -1,0 +1,69 @@
+<div>
+    <div class="add-title">
+      <h2 class="primary" *ngIf="data.action== true">Editar Usuario</h2>
+      <h2 class="primary" *ngIf="data.action== false">Crear nuevo registro en calendario</h2>
+    </div>
+    <div>
+      <form [formGroup]="calendarForm">
+        <mat-grid-list cols="1"rowHeight="85px">
+            <mat-grid-tile>
+                <mat-form-field appearance="outline" class="field-full-width">
+                    <mat-label>Selecciona un responsable</mat-label>
+                    <mat-select formControlName="responsibleId" disableRipple required>
+                      <mat-option *ngFor="let user of users" [value]="user.id">{{user.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+              </mat-grid-tile>
+              <mat-grid-tile>
+                <mat-form-field appearance="outline" class="field-full-width">
+                  <mat-label>Selecciona una fecha</mat-label>
+                  <input formControlName="scheduledDate" matInput [matDatepicker]="picker">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+              </mat-grid-tile>
+        </mat-grid-list>
+        <button mat-raised-button class="btnDialog" (click)="add()">Agregar</button>
+      </form>
+      <div class="table-container">
+        <div class="card-wrapper">
+            <div class="content">
+                    <div class="example-container mat-elevation-z0">
+                    <div class="example-table-container">
+                <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+                    <ng-container matColumnDef="index">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-content"> ID </th>
+                        <td mat-cell *matCellDef="let item; let i = index">{{i}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="responsible">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-content"> Responsable </th>
+                        <td mat-cell *matCellDef="let item">{{item.responsible.name}}  </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="date">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-content"> Fecha </th>
+                        <td mat-cell *matCellDef="let item">{{item.scheduledDate}}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="delete">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-content"> Acciones </th>
+                      <td mat-cell *matCellDef="let item; let i = index"><button title="Eliminar" mat-raised-button class="btnEdit" (click)="deleteItem(item, i)">
+                        <mat-icon matSuffix>delete</mat-icon></button></td>
+                  </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                    </div>
+                    <mat-paginator [pageSize]="30"></mat-paginator>
+                    </div>    
+            </div>
+            <div class="btn-sec">
+                <button mat-raised-button *ngIf="data.action== true" class="btnDialog">Actualizar</button>
+                <button mat-raised-button *ngIf="data.action== false" class="btnDialog" (click)="save()">Guardar</button>
+                <button mat-raised-button type="button" class="btnDialogCancel" (click)="close()">Cancelar</button>
+              </div>
+        </div>
+    </div>
+    </div>
+  </div>

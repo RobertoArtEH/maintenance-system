@@ -9,7 +9,7 @@ import { RegisterComponent } from './components/auth/register/register.component
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/auth/login/login.component';
-import { CalendarComponent } from './components/dashboard/calendar/calendar.component';
+import { CalendarComponent } from './components/sections/calendar/calendar.component';
 import { UsersComponent } from './components/sections/system/users/users.component';
 import { UserDialogComponent } from './components/sections/dialogs/user-dialog/user-dialog.component';
 import { RequestComponent } from './components/sections/requests/request/request.component';
@@ -18,6 +18,7 @@ import { RequestDialogComponent } from './components/sections/dialogs/request-di
 import { MaintenanceComponent } from './components/sections/maintenance/maintenance.component';
 import { MaintenanceDialogComponent } from './components/sections/dialogs/maintenance-dialog/maintenance-dialog.component';
 import { MaintenanceItemComponent } from './components/sections/dialogs/maintenance-item/maintenance-item.component';
+import { CalendarDialogComponent } from './components/sections/dialogs/calendar-dialog/calendar-dialog.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { MaintenanceItemComponent } from './components/sections/dialogs/maintena
     RequestDialogComponent,
     MaintenanceComponent,
     MaintenanceDialogComponent,
-    MaintenanceItemComponent
+    MaintenanceItemComponent,
+    CalendarDialogComponent
   ],
   imports: [
     BrowserModule,
