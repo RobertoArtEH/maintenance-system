@@ -31,30 +31,38 @@
                         </ng-container>
 
                         <ng-container matColumnDef="career">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-content"> Rol del Usuario </th>
-                            <td mat-cell *matCellDef="let user">{{user.name_role}}</td>
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-content"> Area del Usuario </th>
+                            <td mat-cell *matCellDef="let user">{{user.area.name}}</td>
                         </ng-container>
 
                         <ng-container matColumnDef="role">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-content"> Rol del Usuario </th>
-                            <td mat-cell *matCellDef="let user">{{user.name_role}}</td>
+                            <td mat-cell *matCellDef="let user">{{user.role.name}}</td>
                         </ng-container>
 
                         <ng-container matColumnDef="shift">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-content"> Turno </th>
-                            <td mat-cell *matCellDef="let user">{{user.name_role}}</td>
+                            <td mat-cell *matCellDef="let user">
+                                <span *ngIf="user.shift_id == 1"> Matutino </span>
+                                <span *ngIf="user.shift_id == 2"> Vespertino </span>
+                            </td>
                         </ng-container>
 
                         <ng-container matColumnDef="actions">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-content"> Acciones </th>
-                            <td mat-cell *matCellDef="let user"><button *ngIf="user.is_active == true"
-                                mat-raised-button class="btn-status-active">
-                            <mat-icon svgIcon="account"></mat-icon>Activo</button>
-                            <button *ngIf="user.is_active == false"
-                                mat-raised-button class="btn-status-inactive">
-                            <mat-icon svgIcon="account"></mat-icon>Inactivo</button></td>
-                            <td mat-cell *matCellDef="let user"><button mat-raised-button class="btn-edit">
-                            <mat-icon svgIcon="square-edit-outline"></mat-icon></button> </td>
+                            <td mat-cell *matCellDef="let user">
+                                <button mat-raised-button class="btnAccept" *ngIf="user.is_active == 1">
+                                    activo
+                                </button>
+                                <button mat-raised-button class="btnCancel" *ngIf="user.is_active == 0">
+                                    inactivo
+                                </button>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="edit">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-content"> Editar </th>
+                            <td mat-cell *matCellDef="let user"><button title="Editar" mat-raised-button class="btnEdit" (click)="openDialog(true, user.id)">
+                            <mat-icon matSuffix>edit</mat-icon></button> </td>
                         </ng-container>
                         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

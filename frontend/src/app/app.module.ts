@@ -15,6 +15,7 @@ import { UserDialogComponent } from './components/sections/dialogs/user-dialog/u
 import { RequestComponent } from './components/sections/requests/request/request.component';
 import { RequestItemComponent } from './components/sections/dialogs/request-item/request-item.component';
 import { RequestDialogComponent } from './components/sections/dialogs/request-dialog/request-dialog.component';
+import { HttpClientModule } from '@angular/common/http';
 import { MaintenanceComponent } from './components/sections/maintenance/maintenance.component';
 import { MaintenanceDialogComponent } from './components/sections/dialogs/maintenance-dialog/maintenance-dialog.component';
 import { MaintenanceItemComponent } from './components/sections/dialogs/maintenance-item/maintenance-item.component';
@@ -43,7 +44,8 @@ import { CalendarDialogComponent } from './components/sections/dialogs/calendar-
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

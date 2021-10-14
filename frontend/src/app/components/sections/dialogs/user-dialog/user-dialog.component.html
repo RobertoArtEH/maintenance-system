@@ -23,50 +23,40 @@
           <mat-grid-tile>
             <mat-form-field appearance="outline" class="field-full-width">
                 <mat-label>Apellidos</mat-label>
-                <input matInput formControlName="last_name" type="text" placeholder="Apellidos" required>
+                <input matInput formControlName="lastName" type="text" placeholder="Apellidos" required>
                 <mat-icon matSuffix>person</mat-icon>
             </mat-form-field>
           </mat-grid-tile>
           <mat-grid-tile>
             <mat-form-field appearance="outline" class="field-full-width">
                 <mat-label>Contraseña</mat-label>
-                <input matInput formControlName="password" type="text" placeholder="Contraseña" required>
+                <input matInput formControlName="password" type="password" placeholder="Contraseña" required>
                 <mat-icon matSuffix>lock</mat-icon>
             </mat-form-field>
           </mat-grid-tile>
            <mat-grid-tile>
             <mat-form-field appearance="outline" class="field-full-width">
                 <mat-label>Selecciona una carrera</mat-label>
-                <mat-select formControlName="career" disableRipple required>
-                  <mat-option value="1">Option 1</mat-option>
-                  <mat-option value="2">Option 2</mat-option>
-                  <mat-option value="3">Option 3</mat-option>
+                <mat-select formControlName="careerId" disableRipple required>
+                  <mat-option *ngFor="let area of areas"[value]="area.id" > {{area.name}} </mat-option>
                 </mat-select>
             </mat-form-field>
           </mat-grid-tile>
           <mat-grid-tile>
             <mat-form-field appearance="outline" class="field-full-width">
                 <mat-label>Selecciona un rol</mat-label>
-                <mat-select formControlName="role" disableRipple required>
-                  <mat-option value="1">Option 1</mat-option>
-                  <mat-option value="2">Option 2</mat-option>
-                  <mat-option value="3">Option 3</mat-option>
+                <mat-select formControlName="roleId" disableRipple required>
+                  <mat-option *ngFor="let role of roles"[value]="role.id" > {{role.name}} </mat-option>
                 </mat-select>
             </mat-form-field>
           </mat-grid-tile>
           <mat-grid-tile>
-            <mat-form-field appearance="outline" class="field-full-width">
-                <mat-label>Teléfono</mat-label>
-                <input matInput formControlName="phone" type="text" placeholder="Teléfono" required>
-                <mat-icon matSuffix>lock</mat-icon>
-            </mat-form-field>
           </mat-grid-tile>
           <mat-grid-tile>
             <mat-form-field appearance="outline" class="field-full-width">
                 <mat-label>Selecciona un turno</mat-label>
-                <mat-select formControlName="shift" disableRipple required>
-                  <mat-option value="1">Matutino</mat-option>
-                  <mat-option value="2">Vespertino</mat-option>
+                <mat-select formControlName="shiftId" disableRipple required>
+                  <mat-option *ngFor="let shift of shifts"[value]="shift.id"> {{shift.name}} </mat-option>
                 </mat-select>
             </mat-form-field>
           </mat-grid-tile>
@@ -74,8 +64,8 @@
         </mat-grid-list>
   
         <div class="btn-sec">
-          <button mat-raised-button *ngIf="data.action== true" class="btnDialog">Actualizar</button>
-          <button mat-raised-button *ngIf="data.action== false" class="btnDialog">Guardar</button>
+          <button mat-raised-button *ngIf="data.action== true" class="btnDialog" (click)="updateUser()"> Actualizar </button>
+          <button mat-raised-button *ngIf="data.action== false" class="btnDialog" (click)="createUser()"> Guardar </button>
           <button mat-raised-button type="button" class="btnDialogCancel" (click)="close()">Cancelar</button>
         </div>
       </form>
