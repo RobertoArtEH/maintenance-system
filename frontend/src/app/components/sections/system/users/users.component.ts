@@ -6,7 +6,9 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { UserDialogComponent } from '../../dialogs/user-dialog/user-dialog.component';
 import { UserService } from '../../../../services/users/user.service';
-import { confirmDialog } from '../../../resources/alert';
+import { Area } from 'src/app/interfaces/area/area';
+
+
 
 @Component({
   selector: 'app-users',
@@ -16,7 +18,9 @@ import { confirmDialog } from '../../../resources/alert';
 export class UsersComponent implements OnInit {
 
   userForm: FormGroup;
-  displayedColumns= ['name','email','career', 'shift', 'role', 'actions'];
+  areas: Area[] = []
+
+  displayedColumns= ['name','email','career', 'shift', 'role', 'actions', 'edit'];
   dataSource: MatTableDataSource<any>;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -46,24 +50,17 @@ export class UsersComponent implements OnInit {
       console.log('Error' + error);
     });
   }
-  openDialog(action: boolean){
+  
+  openDialog(action: boolean, userId?){
     const dialogRef = this.dialogRef.open(UserDialogComponent,{
       width: '640px',
-      data: {action},
+      data: {action, userId},
     })
 
     dialogRef.afterClosed().subscribe(()=>{
       this.loadUser();
     });
   }
-  // createUsers() {
-  //   if (this.userForm.valid) {
-  //     if (this.userForm.get('role').value == 1) {
-  //       confirmDialog('Actualmente ya hay un administrador ¿Estás seguro que deseas crear?')
-  //       if (result.value) {
-          
-  //       }
-  //     }
-  //   }
-  // }
+  
+
 }
