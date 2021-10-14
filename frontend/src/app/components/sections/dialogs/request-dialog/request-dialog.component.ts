@@ -109,9 +109,9 @@ export class RequestDialogComponent implements OnInit {
     this.serviceRequest.getUsers()  
         .subscribe(  
             x => {  
-        for (let i = 0; i < x.length; i++) {
-          if (x[i].role_id == 3){
-            this.users.push(x[i])
+        for (let i = 0; i < x.data.length; i++) {
+          if (x.data[i].role_id == 3){
+            this.users.push(x.data[i])
           }
         }
     },  

@@ -1,0 +1,80 @@
+<div class="table-container">
+    <div class="card-wrapper">
+        <mat-card class="container-categorie">
+            <h1 class="section-card">Mantenimiento</h1></mat-card>
+            <hr>
+        <div class="content">
+        <mat-card class="container-card">
+            <mat-card class="card">
+                    <div class="btnActions">
+                        <button mat-raised-button class="btnAdd" title="Agregar" (click)="openDialog(false)"><mat-icon matSuffix>add</mat-icon></button>
+                            </div>
+                        <div class="example-container mat-elevation-z0">
+                        <div class="example-table-container">
+                    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+  
+                        <ng-container matColumnDef="serviceType">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-content"> Tipo de mantenimiento </th>
+                            <td mat-cell *matCellDef="let maintenance">
+                            <span *ngIf="maintenance.service_type_id == 1">Preventivo</span>    
+                            <span *ngIf="maintenance.service_type_id == 2">Correctivo</span>    
+                            </td>
+                        </ng-container>
+  
+                        <ng-container matColumnDef="userRequest">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-content"> Solicitante </th>
+                            <td mat-cell *matCellDef="let maintenance">{{maintenance.responsible.name}}  {{maintenance.responsible.last_name}} </td>
+                        </ng-container>
+  
+                        <ng-container matColumnDef="serviceDate">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-content"> Fecha</th>
+                            <td mat-cell *matCellDef="let maintenance">{{maintenance.service_date | date: 'yyyy-MM-dd'}}</td>
+                        </ng-container>
+  
+                        <ng-container matColumnDef="status">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-content"> Estatus </th>
+                            <td mat-cell *matCellDef="let maintenance" ><button
+                                mat-raised-button class="btnPending" *ngIf="maintenance.status.name == 'Pendiente'">
+                            {{maintenance.status.name}}</button>
+                            <button
+                                mat-raised-button class="btnAccept" *ngIf="maintenance.status.name == 'Aceptado'">
+                            {{maintenance.status.name}}</button>
+                            <button
+                                mat-raised-button class="btnCancel" *ngIf="maintenance.status.name == 'Cancelado'">
+                            {{maintenance.status.name}}</button>
+                            <button
+                                mat-raised-button class="btnSigned" *ngIf="maintenance.status.name == 'Finalizado'">
+                            {{maintenance.status.name}}</button>
+                            </td>
+                        </ng-container>
+  
+                        <ng-container matColumnDef="accept">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-content"> Acciones </th>
+                            <td mat-cell *matCellDef="let maintenance"><button *ngIf="maintenance.status.name == 'Pendiente'"
+                                mat-raised-button class="btnAccept" (click)="acceptRequest(maintenance.id)"><mat-icon matSuffix>check</mat-icon></button>
+                                <button *ngIf="maintenance.status.name == 'Aceptado'"
+                                mat-raised-button class="btnSigned" (click)="finishRequest(maintenance.id)">Finalizar</button></td>
+                        </ng-container>
+  
+                        <ng-container matColumnDef="cancel">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-content"> </th>
+                            <td mat-cell *matCellDef="let maintenance">
+                            <button *ngIf="maintenance.status.name == 'Pendiente'"
+                                mat-raised-button class="btnCancel" (click)="cancelRequest(maintenance.id)"><mat-icon matSuffix>cancel</mat-icon></button></td>
+                        </ng-container>
+                        <ng-container matColumnDef="edit">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-content"> Editar </th>
+                            <td mat-cell *matCellDef="let maintenance"><button title="Editar" mat-raised-button class="btnEdit" (click)="openDialog(true, maintenance.id)"  *ngIf="maintenance.status.name == 'Pendiente'">
+                            <mat-icon matSuffix>edit</mat-icon></button> </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
+                        </div>
+                        <mat-paginator [pageSize]="30"></mat-paginator>
+                        </div>      
+                </mat-card>
+            </mat-card>
+        </div>
+    </div>
+  </div>

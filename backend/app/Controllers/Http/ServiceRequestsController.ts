@@ -80,6 +80,54 @@ export default class ServiceRequestsController {
    * @param int id
    * @returns Json
    */
+  public async accept ({ request, response }) {
+    try {
+      const id = request.param('id', 0)
+
+      const service = await ServiceRequest.find(id)
+
+      if (service) {
+        service.serviceStatusId = Constants.STATUS_ACCEPT
+        service.save()
+      }
+
+      return response.ok({ status: true, data: [], message: 'La solicitud de servicio se aceptó con éxito.' })
+    } catch (error) {
+      console.log(error.message)
+
+      return response.badRequest({ status: false, message: 'Ocurrió un error al aceptar la solicitud de servicio.'})
+    }
+  }
+
+  /**
+   * Cambiar estatus a cancelado
+   * @param int id
+   * @returns Json
+   */
+  public async finish ({ request, response }) {
+    try {
+      const id = request.param('id', 0)
+
+      const service = await ServiceRequest.find(id)
+
+      if (service) {
+        service.serviceStatusId = Constants.STATUS_FINISH
+        service.save()
+      }
+
+      return response.ok({ status: true, data: [], message: 'La solicitud de servicio se finalizó con éxito.' })
+    } catch (error) {
+      console.log(error.message)
+
+      return response.badRequest({ status: false, message: 'Ocurrió un error al finalizar la solicitud de servicio.'})
+    }
+  }
+
+  /**
+   * Cambiar estatus a cancelado
+   * @param int id
+   * @returns Json
+   */
   public async cancel ({ request, response }) {
     try {
       const id = request.param('id', 0)
@@ -95,7 +143,7 @@ export default class ServiceRequestsController {
     } catch (error) {
       console.log(error.message)
 
-      return response.badRequest({ status: false, message: 'Ocurrió un error al guardar la solicitud de servicio.'})
+      return response.badRequest({ status: false, message: 'Ocurrió un error al cancelar la solicitud de servicio.'})
     }
   }
 }

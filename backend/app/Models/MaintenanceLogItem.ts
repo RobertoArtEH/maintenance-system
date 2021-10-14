@@ -9,16 +9,13 @@ export default class MaintenanceLogItem extends BaseModel {
   public maintenanceLogId: number
 
   @column()
-  public stringName: string
-
-  @column()
   public quantity: number
 
   @column()
   public description: string
 
   @column()
-  public suggestions: string
+  public suggetions: string
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

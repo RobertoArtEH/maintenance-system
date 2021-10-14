@@ -73,5 +73,41 @@ export class RequestComponent implements OnInit {
       }
     })
   }
+
+  acceptRequest(id){
+    confirmDialog('¿Estás seguro que deseas aceptar esta solicitud?', 'Cancelar', 'Aceptar').then((result) => {
+      if (result.value) {
+        this.serviceRequest.accept(id).subscribe( res => {
+          if (res.status){
+            successDialog(res.message).then(() => {
+              this.loadRequests()
+            })
+          } else{
+            errorMessage(res.message)
+          }
+        }, error => {
+          errorMessage(error)
+        })
+      }
+    })
+  }
+
+  finishRequest(id){
+    confirmDialog('¿Estás seguro que deseas finalizar esta solicitud?', 'Cancelar', 'Aceptar').then((result) => {
+      if (result.value) {
+        this.serviceRequest.finish(id).subscribe( res => {
+          if (res.status){
+            successDialog(res.message).then(() => {
+              this.loadRequests()
+            })
+          } else{
+            errorMessage(res.message)
+          }
+        }, error => {
+          errorMessage(error)
+        })
+      }
+    })
+  }
 }
 
