@@ -35,9 +35,11 @@ export class AuthenticationService {
       }));
   }
 
-  setToken(token: string, refreshToken: string) {
+  setToken(token: string, refreshToken: string, user) {
     localStorage.setItem('token', token)
     localStorage.setItem('refreshToken', refreshToken)
+    localStorage.setItem('user', JSON.stringify(user))
+    this.getData()
   }
 
   isLoggedIn() {
@@ -50,6 +52,10 @@ export class AuthenticationService {
 
   getRefreshToken() {
     return localStorage.getItem('refreshToken')
+  }
+
+  getData() {
+    return localStorage.getItem('user')
   }
 
   removeAll() {

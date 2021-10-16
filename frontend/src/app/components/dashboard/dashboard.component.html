@@ -6,19 +6,19 @@
       <mat-toolbar class="title"><img src="/assets/icons/logo_2.png"/></mat-toolbar>
       <mat-accordion>
     <mat-expansion-panel>
-      <mat-expansion-panel-header class="section"><mat-icon matSuffix>person</mat-icon>Sistema</mat-expansion-panel-header>
+      <mat-expansion-panel-header class="section" *ngIf="statusUsers"><mat-icon matSuffix>person</mat-icon>Sistema</mat-expansion-panel-header>
       <button mat-button class="btnSection" [routerLink]="['system/users']">Usuarios</button>
     </mat-expansion-panel>
     <mat-expansion-panel>
-      <mat-expansion-panel-header class="section"><mat-icon matSuffix>document</mat-icon>Calendario</mat-expansion-panel-header>
+      <mat-expansion-panel-header class="section" *ngIf="statusCalendar"><mat-icon matSuffix>document</mat-icon>Calendario</mat-expansion-panel-header>
       <button mat-button class="btnSection" [routerLink]="['calendar']">Calendario</button>
     </mat-expansion-panel>
     <mat-expansion-panel>
-      <mat-expansion-panel-header class="section"><mat-icon matSuffix>work</mat-icon>Solicitudes</mat-expansion-panel-header>
+      <mat-expansion-panel-header class="section" *ngIf="statusRequests"><mat-icon matSuffix>work</mat-icon>Solicitudes</mat-expansion-panel-header>
       <button mat-button class="btnSection" [routerLink]="['request']">Solicitudes</button>
     </mat-expansion-panel>
     <mat-expansion-panel>
-      <mat-expansion-panel-header class="section"><mat-icon matSuffix>settings</mat-icon>Mantenimiento</mat-expansion-panel-header>
+      <mat-expansion-panel-header class="section" *ngIf="statusMaintenances"><mat-icon matSuffix>settings</mat-icon>Mantenimiento</mat-expansion-panel-header>
       <button mat-button class="btnSection" [routerLink]="['maintenance']">Mantenimiento</button>
     </mat-expansion-panel>
   </mat-accordion>
@@ -38,10 +38,10 @@
         <span class="fill-remaining-space"></span>
        
         <button class="btnUser"style="color: white; font-size: 15px !important;" mat-button [matMenuTriggerFor]="menu">
-        <mat-icon svgIcon="account-circle"></mat-icon>Benito</button>
+        <mat-icon svgIcon="account-circle"></mat-icon>{{name}}</button>
         <mat-menu #menu="matMenu" class="remove-padding">
         <mat-card class="user-card">
-              <mat-card-title class="user">Benito</mat-card-title>
+              <mat-card-title class="user">{{name}}</mat-card-title>
             </mat-card>
           <button mat-menu-item (click)="logout()">
             <mat-icon svgIcon="logout"></mat-icon>Cerrar sesión

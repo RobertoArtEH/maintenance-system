@@ -1,4 +1,5 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -17,11 +18,17 @@ export class DashboardComponent implements OnInit {
     map(result => result.matches),
     shareReplay()
   );
-
+  statusRequests: Boolean
+  statusUsers: Boolean
+  statusMaintenances: Boolean
+  statusCalendar: Boolean
+  user: any
+  name: string
   constructor(private breakpointObserver: BreakpointObserver, private authenticationService: AuthenticationService,
-    private router: Router) { }
+    private router: Router, private authService: AuthenticationService) { }
 
   ngOnInit(): void {
+    this.getData()
   }
 
   logout(){
@@ -37,4 +44,12 @@ export class DashboardComponent implements OnInit {
     })
   }
 
+  getData(){
+    this.user = JSON.parse(this.authService.getData())
+    this.name = this.user.name
+    this.statusRequests = !!this.user.pageFaculties.find(i => i.page.name === 'Solicitudes' && i.faculty.name === 'ver')
+    this.statusUsers = !!this.user.pageFaculties.find(i => i.page.name === 'Usuarios' && i.faculty.name === 'ver')
+    this.statusMaintenances = !!this.user.pageFaculties.find(i => i.page.name === 'Mantenimiento' && i.faculty.name === 'ver')
+    this.statusCalendar = !!this.user.pageFaculties.find(i => i.page.name === 'Calendario' && i.faculty.name === 'ver')
+  }
 }
