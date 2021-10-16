@@ -14,7 +14,7 @@
                   </mat-form-field>
                   </form>
                   <div class="btnActions">
-                      <button mat-raised-button class="btnAdd" title="Agregar" (click)="openDialog(false)"><mat-icon matSuffix>add</mat-icon></button>
+                      <button mat-raised-button class="btnAdd" title="Agregar" (click)="openDialog(false)" [disabled]="!privileges.create"><mat-icon matSuffix>add</mat-icon></button>
                           </div>
                       <div class="example-container mat-elevation-z0">
                       <div class="example-table-container">
@@ -60,20 +60,20 @@
                       <ng-container matColumnDef="accept">
                           <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-content"> Acciones </th>
                           <td mat-cell *matCellDef="let request"><button *ngIf="request.status.name == 'Pendiente'"
-                              mat-raised-button class="btnAccept" (click)="acceptRequest(request.id)"><mat-icon matSuffix>check</mat-icon></button>
+                              mat-raised-button class="btnAccept" (click)="acceptRequest(request.id)" [disabled]="!privileges.authorize"><mat-icon matSuffix>check</mat-icon></button>
                               <button *ngIf="request.status.name == 'Aceptado'"
-                              mat-raised-button class="btnSigned" (click)="finishRequest(request.id)">Finalizar</button></td>
+                              mat-raised-button class="btnSigned" (click)="finishRequest(request.id)" [disabled]="!privileges.finish">Finalizar</button></td>
                       </ng-container>
 
                       <ng-container matColumnDef="cancel">
                           <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-content"> </th>
                           <td mat-cell *matCellDef="let request">
                           <button *ngIf="request.status.name == 'Pendiente'"
-                              mat-raised-button class="btnCancel" (click)="cancelRequest(request.id)"><mat-icon matSuffix>cancel</mat-icon></button></td>
+                              mat-raised-button class="btnCancel" (click)="cancelRequest(request.id)" [disabled]="!privileges.cancel"><mat-icon matSuffix>cancel</mat-icon></button></td>
                       </ng-container>
                       <ng-container matColumnDef="edit">
                           <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-content"> Editar </th>
-                          <td mat-cell *matCellDef="let request"><button title="Editar" mat-raised-button class="btnEdit" (click)="openDialog(true, request.id)"  *ngIf="request.status.name == 'Pendiente'">
+                          <td mat-cell *matCellDef="let request"><button title="Editar" mat-raised-button class="btnEdit" (click)="openDialog(true, request.id)"  *ngIf="request.status.name == 'Pendiente'" [disabled]="!privileges.edit">
                           <mat-icon matSuffix>edit</mat-icon></button> </td>
                       </ng-container>
                       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

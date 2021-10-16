@@ -5,6 +5,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { confirmDialog, errorMessage, successDialog } from 'src/app/components/resources/alert';
+import { Privileges } from 'src/app/interfaces/privileges/privileges';
+import { AuthenticationService } from 'src/app/services/auth/authentication.service';
 import { MaintenanceService } from 'src/app/services/maintenance/maintenance.service';
 import { MaintenanceDialogComponent } from '../dialogs/maintenance-dialog/maintenance-dialog.component';
 
@@ -16,14 +18,23 @@ import { MaintenanceDialogComponent } from '../dialogs/maintenance-dialog/mainte
 })
 
 export class MaintenanceComponent implements OnInit {
+  privileges: Privileges = {see: null,
+    create: null,
+    cancel: null,
+    edit: null,
+    authorize: null,
+    reject: null,
+    finish: null}
+  user: any
   displayedColumns= ['serviceType','userRequest','serviceDate','status', 'accept', 'cancel', 'edit'];
   dataSource: MatTableDataSource<any>;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  constructor(private dialogRef: MatDialog, private maintenanceService: MaintenanceService) { }
+  constructor(private dialogRef: MatDialog, private maintenanceService: MaintenanceService, private authService: AuthenticationService) { }
 
   ngOnInit() {
     this.loadMaintenances();
+    this.getData()
   }
 
   filter(event: Event) {
@@ -109,5 +120,18 @@ export class MaintenanceComponent implements OnInit {
         })
       }
     })
+  }
+
+  getData(){
+    this.user = JSON.parse(this.authService.getData())
+    
+    this.privileges.see = !!this.user.pageFaculties.find(i => i.page.name === 'Mantenimiento' && i.faculty.name === 'ver')
+    this.privileges.create = !!this.user.pageFaculties.find(i => i.page.name === 'Mantenimiento' && i.faculty.name === 'crear')
+    this.privileges.edit = !!this.user.pageFaculties.find(i => i.page.name === 'Mantenimiento' && i.faculty.name === 'editar')
+    this.privileges.cancel = !!this.user.pageFaculties.find(i => i.page.name === 'Mantenimiento' && i.faculty.name === 'cancelar')
+    this.privileges.authorize = !!this.user.pageFaculties.find(i => i.page.name === 'Mantenimiento' && i.faculty.name === 'autorizar')
+    this.privileges.reject = !!this.user.pageFaculties.find(i => i.page.name === 'Mantenimiento' && i.faculty.name === 'rechazar')
+    this.privileges.finish = !!this.user.pageFaculties.find(i => i.page.name === 'Mantenimiento' && i.faculty.name === 'finalizar')
+    console.log(this.privileges)
   }
 }

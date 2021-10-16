@@ -4,6 +4,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { CalendarTable } from 'src/app/interfaces/calendar/calendar-table';
+import { Privileges } from 'src/app/interfaces/privileges/privileges';
+import { AuthenticationService } from 'src/app/services/auth/authentication.service';
 import { CalendarService } from 'src/app/services/calendar/calendar.service';
 import { CalendarDialogComponent } from '../dialogs/calendar-dialog/calendar-dialog.component';
 import { RequestDialogComponent } from '../dialogs/request-dialog/request-dialog.component';
@@ -14,16 +16,25 @@ import { RequestDialogComponent } from '../dialogs/request-dialog/request-dialog
   styleUrls: ['./calendar.component.css']
 })
 export class CalendarComponent implements OnInit {
+  privileges: Privileges = {see: null,
+    create: null,
+    cancel: null,
+    edit: null,
+    authorize: null,
+    reject: null,
+    finish: null}
+  user: any
   calendar: CalendarTable = {responsible: null, scheduledDate: null}
   calendars: CalendarTable[] = []
   displayedColumns= ['userRequest','scheduled_date'];
   dataSource: MatTableDataSource<any>;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  constructor(private dialogRef: MatDialog, private calendarService: CalendarService) { }
+  constructor(private dialogRef: MatDialog, private calendarService: CalendarService, private authService: AuthenticationService) { }
 
   ngOnInit(): void {
     this.loadCalendars()
+    this.getData()
   }
 
   filter(event: Event) {
@@ -74,4 +85,16 @@ export class CalendarComponent implements OnInit {
     });  
   }
 
+  getData(){
+    this.user = JSON.parse(this.authService.getData())
+    
+    this.privileges.see = !!this.user.pageFaculties.find(i => i.page.name === 'Calendario' && i.faculty.name === 'ver')
+    this.privileges.create = !!this.user.pageFaculties.find(i => i.page.name === 'Calendario' && i.faculty.name === 'crear')
+    this.privileges.edit = !!this.user.pageFaculties.find(i => i.page.name === 'Calendario' && i.faculty.name === 'editar')
+    this.privileges.cancel = !!this.user.pageFaculties.find(i => i.page.name === 'Calendario' && i.faculty.name === 'cancelar')
+    this.privileges.authorize = !!this.user.pageFaculties.find(i => i.page.name === 'Calendario' && i.faculty.name === 'autorizar')
+    this.privileges.reject = !!this.user.pageFaculties.find(i => i.page.name === 'Calendario' && i.faculty.name === 'rechazar')
+    this.privileges.finish = !!this.user.pageFaculties.find(i => i.page.name === 'Calendario' && i.faculty.name === 'finalizar')
+    console.log(this.privileges)
+  }
 }

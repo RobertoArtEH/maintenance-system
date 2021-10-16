@@ -7,7 +7,7 @@
         <mat-card class="container-card">
             <mat-card class="card">
                     <div class="btnActions">
-                        <button mat-raised-button class="btnAdd" title="Agregar" (click)="openDialog(false)"><mat-icon matSuffix>add</mat-icon></button>
+                        <button mat-raised-button class="btnAdd" title="Agregar" (click)="openDialog(false)" [disabled]="!privileges.create"><mat-icon matSuffix>add</mat-icon></button>
                             </div>
                         <div class="example-container mat-elevation-z0">
                         <div class="example-table-container">

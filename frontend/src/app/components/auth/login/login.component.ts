@@ -11,8 +11,8 @@ import { errorMessage, successDialog } from '../../resources/alert';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup
-
-  constructor(private fb: FormBuilder, private authenticationService: AuthenticationService, private router: Router) { }
+  constructor(private fb: FormBuilder, private authenticationService: AuthenticationService, private router: Router,
+    ) { }
 
   ngOnInit(): void {
     this.buildForm()
@@ -28,10 +28,9 @@ export class LoginComponent implements OnInit {
   login(){
     if (this.loginForm.valid){
       this.authenticationService.login(this.loginForm.value).subscribe( res => {
-  
         if (res.status){
           successDialog('Bienvenido').then(() =>{
-            this.authenticationService.setToken(res.data.token.token, res.data.token.refresh_token);
+            this.authenticationService.setToken(res.data.token.token, res.data.token.refresh_token, res.data.user);
             return this.router.navigate(['/home']);
           })
         } else{

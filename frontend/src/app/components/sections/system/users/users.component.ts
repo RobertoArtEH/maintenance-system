@@ -7,6 +7,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { UserDialogComponent } from '../../dialogs/user-dialog/user-dialog.component';
 import { UserService } from '../../../../services/users/user.service';
 import { Area } from 'src/app/interfaces/area/area';
+import { AuthenticationService } from 'src/app/services/auth/authentication.service';
+import { Privileges } from 'src/app/interfaces/privileges/privileges';
 
 
 
@@ -16,18 +18,25 @@ import { Area } from 'src/app/interfaces/area/area';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
-
+  privileges: Privileges = {see: null,
+    create: null,
+    cancel: null,
+    edit: null,
+    authorize: null,
+    reject: null,
+    finish: null}
+  user: any
   userForm: FormGroup;
   areas: Area[] = []
-
   displayedColumns= ['name','email','career', 'shift', 'role', 'actions', 'edit'];
   dataSource: MatTableDataSource<any>;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  constructor(private dialogRef: MatDialog, private userService: UserService) { }
+  constructor(private dialogRef: MatDialog, private userService: UserService,private authService: AuthenticationService) { }
 
   ngOnInit() {
     this.loadUser();
+    this.getData()
   }
 
   filter(filterValue: string) {
@@ -61,6 +70,16 @@ export class UsersComponent implements OnInit {
       this.loadUser();
     });
   }
-  
+  getData(){
+    this.user = JSON.parse(this.authService.getData())
+    
+    this.privileges.see = !!this.user.pageFaculties.find(i => i.page.name === 'Usuarios' && i.faculty.name === 'ver')
+    this.privileges.create = !!this.user.pageFaculties.find(i => i.page.name === 'Usuarios' && i.faculty.name === 'crear')
+    this.privileges.edit = !!this.user.pageFaculties.find(i => i.page.name === 'Usuarios' && i.faculty.name === 'editar')
+    this.privileges.cancel = !!this.user.pageFaculties.find(i => i.page.name === 'Usuarios' && i.faculty.name === 'cancelar')
+    this.privileges.authorize = !!this.user.pageFaculties.find(i => i.page.name === 'Usuarios' && i.faculty.name === 'autorizar')
+    this.privileges.reject = !!this.user.pageFaculties.find(i => i.page.name === 'Usuarios' && i.faculty.name === 'rechazar')
+    this.privileges.finish = !!this.user.pageFaculties.find(i => i.page.name === 'Usuarios' && i.faculty.name === 'finalizar')
+  }
 
 }
