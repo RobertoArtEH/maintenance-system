@@ -1,6 +1,7 @@
 import { DateTime } from 'luxon'
 // eslint-disable-next-line max-len
 import { BaseModel, beforeFetch, beforeFind, column, HasMany, hasMany, HasOne, hasOne, ModelQueryBuilderContract } from '@ioc:Adonis/Lucid/Orm'
+import MaintenanceLog from './MaintenanceLog'
 import ServiceRequestItem from './ServiceRequestItem'
 import { Constants } from '../../constants'
 import Status from './Status'
@@ -37,6 +38,12 @@ export default class ServiceRequest extends BaseModel {
 
   @column.dateTime()
   public deletedAt: DateTime
+
+  @hasOne(() => MaintenanceLog, {
+    localKey: 'id',
+    foreignKey: 'serviceRequestId',
+  })
+  public maintanceLog: HasOne<typeof MaintenanceLog>
 
   @hasMany(() => ServiceRequestItem, {
     localKey: 'id',

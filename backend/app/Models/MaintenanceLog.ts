@@ -1,12 +1,19 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, hasMany, HasMany, hasOne, HasOne } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, BelongsTo, belongsTo, column, hasMany, HasMany, hasOne, HasOne } from '@ioc:Adonis/Lucid/Orm'
 import MaintenanceLogItem from './MaintenanceLogItem'
 import User from './User'
 import Status from './Status'
+import ServiceRequest from './ServiceRequest'
 
 export default class MaintenanceLog extends BaseModel {
   @column({ isPrimary: true })
   public id: number
+
+  @column()
+  public folio: string
+
+  @column()
+  public serviceRequestId: number
 
   @column()
   public serviceTypeId: number
@@ -31,6 +38,9 @@ export default class MaintenanceLog extends BaseModel {
     foreignKey: 'id',
   })
   public status: HasOne<typeof Status>
+
+  @belongsTo(() => ServiceRequest)
+  public serviceRequest: BelongsTo<typeof ServiceRequest>
 
   @hasMany(() => MaintenanceLogItem, {
     localKey: 'id',

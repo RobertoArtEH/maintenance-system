@@ -15,12 +15,13 @@ export default class ServiceRequestsController {
         .preload('status')
         .preload('area')
         .preload('responsible')
+        .preload('maintanceLog')
 
       return response.ok({ status: true, data: services })
     } catch (error) {
       console.log(error.message)
 
-      return response.badRequest({ status: false, message: 'Ocurrió un error al consultar los usuarios.'})
+      return response.badRequest({ status: false, message: 'Ocurrió un error al consultar las solicitudes de trabajo.'})
     }
   }
 
@@ -48,7 +49,7 @@ export default class ServiceRequestsController {
     } catch (error) {
       console.log(error.message)
 
-      return response.badRequest({ status: false, message: 'Ocurrió un error al consultar los usuarios.' })
+      return response.badRequest({ status: false, message: 'Ocurrió un error al consultar la solicitud de servicio.' })
     }
   }
 
