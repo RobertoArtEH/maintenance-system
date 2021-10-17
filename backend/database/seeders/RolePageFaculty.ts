@@ -9,6 +9,12 @@ export default class RolePageFacultySeeder extends BaseSeeder {
       { pageId: 1, roleId: 1, facultyId: 2 },
       { pageId: 1, roleId: 1, facultyId: 3 },
 
+      /** Solicitudes - ver */
+      { pageId: 2, roleId: 1, facultyId: 1 },
+      { pageId: 2, roleId: 2, facultyId: 1 },
+      { pageId: 2, roleId: 5, facultyId: 1 },
+      { pageId: 2, roleId: 6, facultyId: 1 },
+      { pageId: 2, roleId: 7, facultyId: 1 },
       /** Solicitudes - crear */
       { pageId: 2, roleId: 5, facultyId: 2 },
       { pageId: 2, roleId: 6, facultyId: 2 },
@@ -39,6 +45,14 @@ export default class RolePageFacultySeeder extends BaseSeeder {
       /** Calendario - ver */
       { pageId: 3, roleId: 5, facultyId: 1 },
 
+      /** Mantenimiento - ver */
+      { pageId: 4, roleId: 1, facultyId: 1 },
+      { pageId: 4, roleId: 2, facultyId: 1 },
+      { pageId: 4, roleId: 3, facultyId: 1 },
+      { pageId: 4, roleId: 4, facultyId: 1 },
+      { pageId: 4, roleId: 5, facultyId: 1 },
+      { pageId: 4, roleId: 6, facultyId: 1 },
+      { pageId: 4, roleId: 7, facultyId: 1 },
       /** Mantenimiento - crear */
       { pageId: 4, roleId: 5, facultyId: 2 },
       { pageId: 4, roleId: 6, facultyId: 2 },
