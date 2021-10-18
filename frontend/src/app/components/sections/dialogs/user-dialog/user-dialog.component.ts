@@ -12,6 +12,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { Shift } from 'src/app/interfaces/shift/shift';
+import { UserStatus } from 'src/app/interfaces/user/user-status';
 
 @Component({
   selector: 'app-user-dialog',
@@ -25,6 +26,7 @@ export class UserDialogComponent implements OnInit {
   roles: Role[] = []
   shifts: Shift[] = [];
   userForm: FormGroup;
+  userStatus: UserStatus[] = []
   dataSource: MatTableDataSource<any>;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -37,6 +39,7 @@ export class UserDialogComponent implements OnInit {
     this.loadAreas();
     this.loadRoles();
     this.loadShifts();
+    this.loadStatus();
 
     if (this.data.action) {
       this.show();
@@ -44,10 +47,14 @@ export class UserDialogComponent implements OnInit {
 
   }
 
+  loadStatus(){
+    this.userStatus.push({value: 0, name: "Inactivo"},{value: 1, name: 'Activo'})
+  }
+
 
   buildForm(): void {
     this.userForm = new FormGroup({
-      id: new FormControl(''),
+      id: new FormControl(null),
       name: new FormControl('',Validators.required),
       lastName: new FormControl('',Validators.required),
       email: new FormControl('',Validators.required),
@@ -55,13 +62,12 @@ export class UserDialogComponent implements OnInit {
       roleId: new FormControl('',Validators.required),
       careerId: new FormControl('',Validators.required),
       shiftId: new FormControl('',Validators.required),
-      isActive: new FormControl(1 ,Validators.required)
+      is_active: new FormControl('',Validators.required)
     });
   }
   
   show(){
     this.userService.show(this.data.userId).subscribe( res => {
-          console.log(res);
           this.userForm.get('id').setValue(res.data.id)
           this.userForm.get('name').setValue(res.data.name)
           this.userForm.get('lastName').setValue(res.data.last_name)
@@ -70,6 +76,7 @@ export class UserDialogComponent implements OnInit {
           this.userForm.get('roleId').setValue(res.data.role_id)
           this.userForm.get('careerId').setValue(res.data.career_id)
           this.userForm.get('shiftId').setValue(res.data.shift_id)
+          this.userForm.get('is_active').setValue(res.data.is_active)
           // this.loadUser(this.usuarios);
     })
   }

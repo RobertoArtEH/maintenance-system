@@ -51,12 +51,18 @@
             </mat-form-field>
           </mat-grid-tile>
           <mat-grid-tile>
-          </mat-grid-tile>
-          <mat-grid-tile>
             <mat-form-field appearance="outline" class="field-full-width">
                 <mat-label>Selecciona un turno</mat-label>
                 <mat-select formControlName="shiftId" disableRipple required>
                   <mat-option *ngFor="let shift of shifts"[value]="shift.id"> {{shift.name}} </mat-option>
+                </mat-select>
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-form-field appearance="outline" class="field-full-width">
+                <mat-label>Estatus</mat-label>
+                <mat-select formControlName="is_active" disableRipple required>
+                  <mat-option *ngFor="let status of userStatus"[value]="status.value"> {{status.name}} </mat-option>
                 </mat-select>
             </mat-form-field>
           </mat-grid-tile>
