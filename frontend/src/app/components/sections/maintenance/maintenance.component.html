@@ -12,7 +12,11 @@
                         <div class="example-container mat-elevation-z0">
                         <div class="example-table-container">
                     <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
-  
+                        <ng-container matColumnDef="folio">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-content"> Folio de solicitud </th>
+                            <td mat-cell *matCellDef="let maintenance">{{maintenance.serviceRequest.folio}}
+                            </td>
+                        </ng-container>
                         <ng-container matColumnDef="serviceType">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-content"> Tipo de mantenimiento </th>
                             <td mat-cell *matCellDef="let maintenance">
