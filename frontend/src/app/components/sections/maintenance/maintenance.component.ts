@@ -26,7 +26,7 @@ export class MaintenanceComponent implements OnInit {
     reject: null,
     finish: null}
   user: any
-  displayedColumns= ['serviceType','userRequest','serviceDate','status', 'accept', 'cancel', 'edit'];
+  displayedColumns= ['folio','serviceType','userRequest','serviceDate','status', 'accept', 'cancel', 'edit'];
   dataSource: MatTableDataSource<any>;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;

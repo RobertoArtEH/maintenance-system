@@ -11,9 +11,11 @@ import { Area } from 'src/app/interfaces/area/area';
 import { Maintenance } from 'src/app/interfaces/maintenance/maintenance';
 import { MaintenanceItem } from 'src/app/interfaces/maintenance/maintenance-item';
 import { ServiceType } from 'src/app/interfaces/maintenance/service-type';
+import { ServiceRequest } from 'src/app/interfaces/services/service-request';
 import { User } from 'src/app/interfaces/user/user';
 import { AreasService } from 'src/app/services/areas/areas.service';
 import { MaintenanceService } from 'src/app/services/maintenance/maintenance.service';
+import { ServiceRequestService } from 'src/app/services/serviceRequest/service-request.service';
 import { MaintenanceItemComponent } from '../maintenance-item/maintenance-item.component';
 
 @Component({
@@ -30,26 +32,43 @@ export class MaintenanceDialogComponent implements OnInit {
   displayedColumns= ['index', 'quantity','description','suggetions', 'edit', 'delete'];
   dataSource: MatTableDataSource<any>;
   pipe = new DatePipe('en-US');
+  requests: ServiceRequest[] = []
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   constructor(private areasService: AreasService, private dialogReff: MatDialog,
     private maintenanceService: MaintenanceService, private router: Router, private dialogRef: MatDialogRef<MaintenanceDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,) {dialogRef.disableClose = true; this.buildForm(); }
+    @Inject(MAT_DIALOG_DATA) public data: any, private serviceRequest: ServiceRequestService) {dialogRef.disableClose = true; this.buildForm(); }
 
   ngOnInit(): void {
     this.buildForm()
     this.loadUsers()
     this.loadServiceType()
+    this.loadRequests()
   
     if (this.data.id != null) {
       this.show()
     }
   }
+  loadRequests() {  
+    this.serviceRequest.index()
+        .subscribe(  
+            x => {  
+          for (let i = 0; i < x.data.length; i++) {
+            if (x.data[i].status.name == 'Finalizado'){
+              this.requests.push(x.data[i])
+            }
+          }
+    },  
+    error => {  
+      console.log('Error' + error);  
+    });  
+  }
 
   buildForm(): void {
     this.maintenanceForm = new FormGroup({
       id: new FormControl(''),
+      service_request_id: new FormControl('',Validators.required),
       serviceDate: new FormControl('',Validators.required),
       responsible_id:  new FormControl('',Validators.required),
       serviceTypeId:  new FormControl('',Validators.required),

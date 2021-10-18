@@ -34,7 +34,8 @@ export class RegisterComponent implements OnInit {
       roleId: ['', [Validators.required]],
       shiftId: ['', [Validators.required]],
       email: ['',[Validators.required,Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]],
-      password: ['', [Validators.required]]
+      password: ['', [Validators.required]],
+      isActive: [1]
     });
   }
 

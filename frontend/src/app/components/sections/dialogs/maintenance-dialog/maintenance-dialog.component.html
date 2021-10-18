@@ -9,6 +9,14 @@
               <mat-grid-list cols="2" rowHeight="85px">
                 <mat-grid-tile>
                   <mat-form-field appearance="outline" class="field-full-width">
+                    <mat-label>Selecciona un folio de solicitud</mat-label>
+                    <mat-select formControlName="service_request_id" disableRipple required>
+                      <mat-option *ngFor="let request of requests" [value]="request.id">{{request.folio}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+              </mat-grid-tile>
+                <mat-grid-tile>
+                  <mat-form-field appearance="outline" class="field-full-width">
                     <mat-label>Selecciona un tipo de mantenimiento</mat-label>
                     <mat-select formControlName="serviceTypeId" disableRipple required>
                       <mat-option *ngFor="let serviceType of serviceTypes" [value]="serviceType.id">{{serviceType.name}}</mat-option>
