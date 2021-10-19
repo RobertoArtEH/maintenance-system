@@ -8,6 +8,7 @@ import { confirmDialog, errorMessage, successDialog } from 'src/app/components/r
 import { Privileges } from 'src/app/interfaces/privileges/privileges';
 import { AuthenticationService } from 'src/app/services/auth/authentication.service';
 import { ServiceRequestService } from 'src/app/services/serviceRequest/service-request.service';
+import { MaintenanceDialogComponent } from '../../dialogs/maintenance-dialog/maintenance-dialog.component';
 import { RequestDialogComponent } from '../../dialogs/request-dialog/request-dialog.component';
 
 @Component({
@@ -44,6 +45,17 @@ export class RequestComponent implements OnInit {
     const dialogRef = this.dialogRef.open(RequestDialogComponent,{
       width: '840px',
       data: {id, action},
+    })
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.loadRequests()
+    });
+  }
+
+  openDialogMaintenance(action: boolean){   
+    const dialogRef = this.dialogRef.open(MaintenanceDialogComponent,{
+      width: '840px',
+      data: {action},
     })
 
     dialogRef.afterClosed().subscribe(result => {
@@ -110,6 +122,7 @@ export class RequestComponent implements OnInit {
           if (res.status){
             successDialog(res.message).then(() => {
               this.loadRequests()
+              this.openDialogMaintenance(false)
             })
           } else{
             errorMessage(res.message)
