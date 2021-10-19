@@ -53,9 +53,9 @@ export class MaintenanceDialogComponent implements OnInit {
   loadRequests() {  
     this.serviceRequest.index()
         .subscribe(  
-            x => {  
+            x => {
           for (let i = 0; i < x.data.length; i++) {
-            if (x.data[i].status.name == 'Finalizado'){
+            if (x.data[i].status.name == 'Finalizado' && x.data[i].maintanceLog  == null){
               this.requests.push(x.data[i])
             }
           }
