@@ -24,13 +24,13 @@ table {
 }
 .table-content {
   background-color: white;
-  color: #67152b;
+  color: #0E3400;
   text-align: center;
 }
 
 .mat-paginator-container {
   background-color: white;
-  color: #67152b;
+  color: #0E3400;
 }
 
 th.mat-sort-header-sorted {

@@ -1,7 +1,7 @@
 .container {
     width: 400px;
     margin-top: 20px;
-    border-color:#67152B;
+    border-color:#0E3400;
     border-width: 1px;
     border-style: solid;
     border-radius: 15px;
@@ -61,7 +61,7 @@
   }
   
   .btnRegister {
-    background-color: #67152B;
+    background-color: #0E3400;
     color: white;
     width: 50%;
     height: 50px;
@@ -93,7 +93,7 @@
   a {
     text-align: center;
     font-size: small;
-    color:  #67152B;;
+    color:  #0E3400;
     margin-top: 20px;
   }
 
