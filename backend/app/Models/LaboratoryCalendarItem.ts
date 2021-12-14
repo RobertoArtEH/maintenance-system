@@ -1,6 +1,7 @@
 import { DateTime } from 'luxon'
 import { BaseModel, column, HasOne, hasOne } from '@ioc:Adonis/Lucid/Orm'
 import User from './User'
+import Laboratory from './Laboratory'
 
 export default class LaboratoryCalendarItem extends BaseModel {
   @column({ isPrimary: true })
@@ -11,6 +12,9 @@ export default class LaboratoryCalendarItem extends BaseModel {
 
   @column()
   public responsibleId: number
+
+  @column()
+  public laboratoryId: number
 
   @column.dateTime()
   public laboratoryDate: DateTime
@@ -26,4 +30,10 @@ export default class LaboratoryCalendarItem extends BaseModel {
     foreignKey: 'id',
   })
   public responsible: HasOne<typeof User>
+
+  @hasOne(() => Laboratory, {
+    localKey: 'laboratoryId',
+    foreignKey: 'id',
+  })
+  public laboratory: HasOne<typeof Laboratory>
 }
