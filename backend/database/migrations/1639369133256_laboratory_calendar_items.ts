@@ -6,7 +6,7 @@ export default class LaboratoryCalendarItems extends BaseSchema {
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
-      table.integer('laboratoty_calendar_id')
+      table.integer('laboratory_calendar_id')
       table.integer('laboratory_id')
       table.integer('responsible_id')
       table.dateTime('laboratory_date')
