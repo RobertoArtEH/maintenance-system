@@ -22,6 +22,10 @@
       <mat-expansion-panel-header class="section" *ngIf="statusMaintenances"><mat-icon matSuffix>settings</mat-icon>Mantenimiento</mat-expansion-panel-header>
       <button mat-button class="btnSection" [routerLink]="['maintenance']">Mantenimiento</button>
     </mat-expansion-panel>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header class="section" *ngIf="statusRequisitions"><mat-icon matSuffix>settings</mat-icon>Requisiciones</mat-expansion-panel-header>
+      <button mat-button class="btnSection" [routerLink]="['requisition']">Requisiciones</button>
+    </mat-expansion-panel>
   </mat-accordion>
     </mat-sidenav>
     

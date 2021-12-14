@@ -9,6 +9,7 @@ import { AuthGuard } from './guards/auth/auth.guard';
 import { MaintenanceComponent } from './components/sections/maintenance/maintenance.component';
 import { CalendarComponent } from './components/sections/calendar/calendar.component';
 import { LaboratoryCalendarComponent } from './components/sections/calendar/laboratory-calendar/laboratory-calendar.component';
+import { RequisitionComponent } from './components/sections/requisition/requisition.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -25,6 +26,7 @@ const routes: Routes = [
 
       {path: 'request', component: RequestComponent},
       {path: 'maintenance', component: MaintenanceComponent},
+      {path: 'requisition', component: RequisitionComponent},
       {path: 'calendar/general', component: CalendarComponent},
       {path: 'calendar/laboratories', component: LaboratoryCalendarComponent},
       
