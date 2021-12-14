@@ -20,6 +20,8 @@ import { MaintenanceComponent } from './components/sections/maintenance/maintena
 import { MaintenanceDialogComponent } from './components/sections/dialogs/maintenance-dialog/maintenance-dialog.component';
 import { MaintenanceItemComponent } from './components/sections/dialogs/maintenance-item/maintenance-item.component';
 import { CalendarDialogComponent } from './components/sections/dialogs/calendar-dialog/calendar-dialog.component';
+import { LaboratoryCalendarComponent } from './components/sections/calendar/laboratory-calendar/laboratory-calendar.component';
+import { LaboratoryCalendarDialogComponent } from './components/sections/dialogs/laboratory-calendar-dialog/laboratory-calendar-dialog.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { CalendarDialogComponent } from './components/sections/dialogs/calendar-
     MaintenanceComponent,
     MaintenanceDialogComponent,
     MaintenanceItemComponent,
-    CalendarDialogComponent
+    CalendarDialogComponent,
+    LaboratoryCalendarComponent,
+    LaboratoryCalendarDialogComponent
   ],
   imports: [
     BrowserModule,
