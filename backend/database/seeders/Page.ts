@@ -5,13 +5,15 @@ export default class PageSeeder extends BaseSeeder {
   public async run () {
     await Page.createMany([
       /** Sistema */
-      { name: 'Usuarios' },
+      { id: 1, name: 'Usuarios' },
       /** Solicitudes */
-      { name: 'Solicitudes' },
+      { id: 2, name: 'Solicitudes' },
       /** Calendario */
-      { name: 'Calendario' },
+      { id: 3, name: 'Calendario' },
       /** Mantenimiento */
-      { name: 'Mantenimiento' },
+      { id: 4, name: 'Mantenimiento' },
+      /** Requisiciones */
+      { id: 5, name: 'Requisiciones' },
     ])
   }
 }

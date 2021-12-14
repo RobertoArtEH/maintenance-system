@@ -32,6 +32,14 @@ Route.group(() => {
   Route.get('user/load/:id', 'UsersController.find')
   Route.post('user/delete', 'UsersController.delete')
 
+  /** Requisitions */
+  Route.get('requisitions/index', 'RequisitionController.index')
+  Route.get('requisition/load/:id', 'RequisitionController.find')
+  Route.post('requisition/save', 'RequisitionController.save')
+  Route.post('requisition/accept/:id', 'RequisitionController.accept')
+  Route.post('requisition/finish/:id', 'RequisitionController.finish')
+  Route.post('requisition/cancel/:id', 'RequisitionController.cancel')
+
   /** Request services */
   Route.get('services/index', 'ServiceRequestsController.index')
   Route.get('service/load/:id', 'ServiceRequestsController.find')
@@ -51,8 +59,11 @@ Route.group(() => {
   /** Calendars */
   Route.get('calendars/index', 'CalendarsController.index')
   Route.post('calendar/save', 'CalendarsController.save')
+  Route.get('laboratory/calendars/index', 'CalendarsController.index')
+  Route.post('laboratory/calendar/save', 'CalendarsController.save')
 
   /** System */
   Route.get('areas/index', 'AreasController.index')
   Route.get('roles/index', 'RolesController.index')
+  Route.get('laboratories/index', 'LaboratoriesController.index')
 })//.middleware('auth:api')
