@@ -66,4 +66,4 @@ Route.group(() => {
   Route.get('areas/index', 'AreasController.index')
   Route.get('roles/index', 'RolesController.index')
   Route.get('laboratories/index', 'LaboratoriesController.index')
-})//.middleware('auth:api')
+}).middleware(['auth:api'])
