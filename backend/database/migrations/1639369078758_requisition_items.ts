@@ -6,6 +6,7 @@ export default class RequisitionItems extends BaseSchema {
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
+      table.integer('requisition_id')
       table.string('code')
       table.integer('quantity')
       table.string('unit')

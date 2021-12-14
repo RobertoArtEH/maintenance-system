@@ -6,6 +6,9 @@ export default class RequisitionItem extends BaseModel {
   public id: number
 
   @column()
+  public requisitionId: number
+
+  @column()
   public code: string
 
   @column()
