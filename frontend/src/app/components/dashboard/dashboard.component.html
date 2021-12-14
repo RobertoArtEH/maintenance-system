@@ -11,7 +11,8 @@
     </mat-expansion-panel>
     <mat-expansion-panel>
       <mat-expansion-panel-header class="section" *ngIf="statusCalendar"><mat-icon matSuffix>document</mat-icon>Calendario</mat-expansion-panel-header>
-      <button mat-button class="btnSection" [routerLink]="['calendar']">Calendario</button>
+      <button mat-button class="btnSection" [routerLink]="['calendar/general']">General</button>
+      <button mat-button class="btnSection" [routerLink]="['calendar/laboratories']">Laboratorios</button>
     </mat-expansion-panel>
     <mat-expansion-panel>
       <mat-expansion-panel-header class="section" *ngIf="statusRequests"><mat-icon matSuffix>work</mat-icon>Solicitudes</mat-expansion-panel-header>

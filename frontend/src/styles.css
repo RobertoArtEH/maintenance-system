@@ -8,12 +8,12 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .color-primary{
-    background-color: #67152B;
+    background-color: #0E3400;
 }
 
 .color-secondary{
     background-color: white;
-    color: #67152B;
+    color: #0E3400;
 }
 
 .bg-dark{
@@ -27,7 +27,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mat-dialog-container{
     background: white;
     color: black;
-    border-color:#67152B;
+    border-color:#0E3400;
     border-width: 1px;
     border-style: solid;
 }
@@ -41,7 +41,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 .mat-option.mat-active {
     color: #fff;
-    background-color: #67152B;
+    background-color: #0E3400;
 }
 .mat-option:hover{
     color: #fff;
@@ -50,7 +50,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
     color: #fff;
-    background-color: #67152B;
+    background-color: #0E3400;
 }
 
 .mat-button, .mat-icon-button, .mat-stroked-button {
