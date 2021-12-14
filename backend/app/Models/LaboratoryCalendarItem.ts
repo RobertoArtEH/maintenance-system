@@ -8,7 +8,7 @@ export default class LaboratoryCalendarItem extends BaseModel {
   public id: number
 
   @column()
-  public calendarId: number
+  public laboratoryCalendarId: number
 
   @column()
   public responsibleId: number
