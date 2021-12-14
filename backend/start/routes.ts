@@ -33,12 +33,12 @@ Route.group(() => {
   Route.post('user/delete', 'UsersController.delete')
 
   /** Requisitions */
-  Route.get('requisitions/index', 'RequisitionController.index')
-  Route.get('requisition/load/:id', 'RequisitionController.find')
-  Route.post('requisition/save', 'RequisitionController.save')
-  Route.post('requisition/accept/:id', 'RequisitionController.accept')
-  Route.post('requisition/finish/:id', 'RequisitionController.finish')
-  Route.post('requisition/cancel/:id', 'RequisitionController.cancel')
+  Route.get('requisitions/index', 'RequisitionsController.index')
+  Route.get('requisition/load/:id', 'RequisitionsController.find')
+  Route.post('requisition/save', 'RequisitionsController.save')
+  Route.post('requisition/accept/:id', 'RequisitionsController.accept')
+  Route.post('requisition/finish/:id', 'RequisitionsController.finish')
+  Route.post('requisition/cancel/:id', 'RequisitionsController.cancel')
 
   /** Request services */
   Route.get('services/index', 'ServiceRequestsController.index')
