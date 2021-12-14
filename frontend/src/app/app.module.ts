@@ -15,7 +15,7 @@ import { UserDialogComponent } from './components/sections/dialogs/user-dialog/u
 import { RequestComponent } from './components/sections/requests/request/request.component';
 import { RequestItemComponent } from './components/sections/dialogs/request-item/request-item.component';
 import { RequestDialogComponent } from './components/sections/dialogs/request-dialog/request-dialog.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MaintenanceComponent } from './components/sections/maintenance/maintenance.component';
 import { MaintenanceDialogComponent } from './components/sections/dialogs/maintenance-dialog/maintenance-dialog.component';
 import { MaintenanceItemComponent } from './components/sections/dialogs/maintenance-item/maintenance-item.component';
@@ -25,6 +25,7 @@ import { LaboratoryCalendarDialogComponent } from './components/sections/dialogs
 import { RequisitionComponent } from './components/sections/requisition/requisition.component';
 import { RequisitionDialogComponent } from './components/sections/dialogs/requisition-dialog/requisition-dialog.component';
 import { RequisitionItemComponent } from './components/sections/dialogs/requisition-item/requisition-item.component';
+import { JwtInterceptorService } from './services/auth/jwt-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,7 @@ import { RequisitionItemComponent } from './components/sections/dialogs/requisit
     MaterialModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
