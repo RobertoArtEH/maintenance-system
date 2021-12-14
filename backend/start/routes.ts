@@ -59,8 +59,8 @@ Route.group(() => {
   /** Calendars */
   Route.get('calendars/index', 'CalendarsController.index')
   Route.post('calendar/save', 'CalendarsController.save')
-  Route.get('laboratory/calendars/index', 'CalendarsController.index')
-  Route.post('laboratory/calendar/save', 'CalendarsController.save')
+  Route.get('laboratory/calendars/index', 'LaboratoryCalendarsController.index')
+  Route.post('laboratory/calendar/save', 'LaboratoryCalendarsController.save')
 
   /** System */
   Route.get('areas/index', 'AreasController.index')
