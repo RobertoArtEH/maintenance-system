@@ -26,7 +26,7 @@ export default class LaboratoryCalendarsController {
 
           for (const item of data.items) {
             // eslint-disable-next-line max-len
-            await LaboratoryCalendarItem.updateOrCreate({ id : item.id ?? null}, {calendarId : calendar.id, ...item})
+            await LaboratoryCalendarItem.updateOrCreate({ id : item.id ?? null}, {laboratoryCalendarId : calendar.id, ...item})
           }
 
           return response.ok({ status: true, data: calendar, message: 'El calendario se guardó con éxito.' })
