@@ -6,12 +6,16 @@ import LaboratoryCalendarItem from "App/Models/LaboratoryCalendarItem"
 export default class LaboratoryCalendarsController {
     public async index ({ response }) {
         try {
-          const calendars = await LaboratoryCalendar.query().preload('items', (itemsQuery) => {
-            itemsQuery.preload('responsible', (commentsQuery) => {
-              commentsQuery.select('*')
+          const calendars = await LaboratoryCalendar.query()
+            .preload('items', (itemsQuery) => {
+              itemsQuery.preload('responsible', (q) => {
+                q.select('*')
+              })
+              itemsQuery.preload('laboratory', (q) => {
+                q.select('*')
+              })
             })
-          })
-    
+
           return response.ok({ status: true, data: calendars })
         } catch (error) {
           console.log(error.message)
