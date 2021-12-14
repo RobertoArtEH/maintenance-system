@@ -1,0 +1,99 @@
+<div class="table-container">
+    <div class="card-wrapper">
+        <mat-card class="container-categorie">
+            <h1 class="section-card">Requisiciones</h1></mat-card>
+            <hr>
+        <div class="content">
+        <mat-card class="container-card">
+            <mat-card class="card">
+                <form class="search-form">
+                    <mat-form-field appearance="outline" class="search-full-width">
+                        <mat-label>Buscar</mat-label>
+                        <input matInput type="text" placeholder="Buscar" required (keyup)="filter($event)">
+                        <mat-icon matSuffix>search</mat-icon>
+                    </mat-form-field>
+                    </form>
+                    <div class="btnActions">
+                        <button mat-raised-button class="btnAdd" title="Agregar" (click)="openDialog(false)" [disabled]="!privileges.create"><mat-icon matSuffix>add</mat-icon></button>
+                            </div>
+                        <div class="example-container mat-elevation-z0">
+                        <div class="example-table-container">
+                    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+  
+                        <ng-container matColumnDef="dependency">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-content"> Dependencia </th>
+                            <td mat-cell *matCellDef="let request">{{request.dependency}}  </td>
+                        </ng-container>
+  
+                        <ng-container matColumnDef="elaboration_date">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-content"> Fecha de elaboración </th>
+                            <td mat-cell *matCellDef="let request">{{request.elaboration_date | date: 'yyyy-MM-dd'}} </td>
+                        </ng-container>
+  
+                        <ng-container matColumnDef="check_in_date">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-content"> Fecha de checada</th>
+                            <td mat-cell *matCellDef="let request">{{request.check_in_date | date: 'yyyy-MM-dd'}}</td>
+                        </ng-container>
+  
+                        <ng-container matColumnDef="justification">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-content"> Justificación </th>
+                            <td mat-cell *matCellDef="let request">{{request.justification}}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="responsible">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-content"> Responsable </th>
+                            <td mat-cell *matCellDef="let request">{{request.responsible.name}}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="contact">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-content"> Contacto </th>
+                            <td mat-cell *matCellDef="let request">{{request.contact}}</td>
+                        </ng-container>
+  
+                        <ng-container matColumnDef="status">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-content"> Estatus </th>
+                            <td mat-cell *matCellDef="let request" ><button
+                                mat-raised-button class="btnPending" *ngIf="request.status.name == 'Pendiente'">
+                            {{request.status.name}}</button>
+                            <button
+                                mat-raised-button class="btnAccept" *ngIf="request.status.name == 'Aceptado'">
+                            {{request.status.name}}</button>
+                            <button
+                                mat-raised-button class="btnCancel" *ngIf="request.status.name == 'Cancelado'">
+                            {{request.status.name}}</button>
+                            <button
+                                mat-raised-button class="btnSigned" *ngIf="request.status.name == 'Finalizado'">
+                            {{request.status.name}}</button>
+                            </td>
+                        </ng-container>
+  
+                        <ng-container matColumnDef="accept">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-content"> Acciones </th>
+                            <td mat-cell *matCellDef="let request"><button *ngIf="request.status.name == 'Pendiente'"
+                                mat-raised-button class="btnAccept" (click)="acceptRequest(request.id)" [disabled]="!privileges.authorize"><mat-icon matSuffix>check</mat-icon></button>
+                                <button *ngIf="request.status.name == 'Aceptado'"
+                                mat-raised-button class="btnSigned" (click)="finishRequest(request.id)" [disabled]="!privileges.finish">Finalizar</button></td>
+                        </ng-container>
+  
+                        <ng-container matColumnDef="cancel">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-content"> </th>
+                            <td mat-cell *matCellDef="let request">
+                            <button *ngIf="request.status.name == 'Pendiente'"
+                                mat-raised-button class="btnCancel" (click)="cancelRequest(request.id)" [disabled]="!privileges.cancel"><mat-icon matSuffix>cancel</mat-icon></button></td>
+                        </ng-container>
+                        <ng-container matColumnDef="edit">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-content"> Editar </th>
+                            <td mat-cell *matCellDef="let request"><button title="Editar" mat-raised-button class="btnEdit" (click)="openDialog(true, request.id)"  *ngIf="request.status.name == 'Pendiente'" [disabled]="!privileges.edit">
+                            <mat-icon matSuffix>edit</mat-icon></button> </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
+                        </div>
+                        <mat-paginator [pageSize]="30"></mat-paginator>
+                        </div>      
+                </mat-card>
+            </mat-card>
+        </div>
+    </div>
+  </div>

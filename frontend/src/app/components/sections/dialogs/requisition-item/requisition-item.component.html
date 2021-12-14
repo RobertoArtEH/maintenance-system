@@ -1,0 +1,59 @@
+<div>
+    <div class="add-title">
+      <h2 class="primary" *ngIf="data.action== true">Editar Item</h2>
+      <h2 class="primary" *ngIf="data.action== false">Crear Item</h2>
+    </div>
+    <div>
+      <form [formGroup]="itemForm">
+        <mat-grid-list cols="2" rowHeight="85px">
+            <mat-grid-tile>
+              <mat-form-field appearance="outline" class="field-full-width">
+                <mat-label>Código</mat-label>
+                  <input matInput formControlName="code" color="color-secondary" type="text" placeholder="Código" required>
+                  <mat-icon matSuffix>lock</mat-icon>
+              </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="outline" class="field-full-width">
+                  <mat-label>Cantidad</mat-label>
+                    <input matInput formControlName="quantity" color="color-secondary" type="number" placeholder="Cantidad" required>
+                    <mat-icon matSuffix>money</mat-icon>
+                </mat-form-field>
+              </mat-grid-tile>
+              <mat-grid-tile>
+                <mat-form-field appearance="outline" class="field-full-width">
+                  <mat-label>Unidades</mat-label>
+                    <input matInput formControlName="unit" color="color-secondary" type="number" placeholder="unit" required>
+                    <mat-icon matSuffix>lock</mat-icon>
+                </mat-form-field>
+              </mat-grid-tile>
+              <mat-grid-tile>
+                <mat-form-field appearance="outline" class="field-full-width">
+                  <mat-label>Precio unitario</mat-label>
+                    <input matInput formControlName="unit_price" color="color-secondary" type="number" placeholder="Precio unitario" required>
+                    <mat-icon matSuffix>lock</mat-icon>
+                </mat-form-field>
+              </mat-grid-tile>
+              <mat-grid-tile>
+                <mat-form-field appearance="outline" class="field-full-width">
+                  <mat-label>Descripción</mat-label>
+                    <input matInput formControlName="description" color="color-secondary" type="text" placeholder="Descripción" required>
+                    <mat-icon matSuffix>lock</mat-icon>
+                </mat-form-field>
+              </mat-grid-tile>
+              <mat-grid-tile>
+                <mat-form-field appearance="outline" class="field-full-width">
+                  <mat-label>Precio total</mat-label>
+                    <input matInput formControlName="total_price" color="color-secondary" type="number" placeholder="Precio total" required>
+                    <mat-icon matSuffix>lock</mat-icon>
+                </mat-form-field>
+              </mat-grid-tile>
+          </mat-grid-list>
+        <div class="btn-sec">
+          <button mat-raised-button *ngIf="data.action== true" class="btnDialog" (click)="update()">Actualizar</button>
+          <button mat-raised-button *ngIf="data.action== false" class="btnDialog"  (click)="add()">Guardar</button>
+          <button mat-raised-button type="button" class="btnDialogCancel" (click)="close()">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>

@@ -22,6 +22,9 @@ import { MaintenanceItemComponent } from './components/sections/dialogs/maintena
 import { CalendarDialogComponent } from './components/sections/dialogs/calendar-dialog/calendar-dialog.component';
 import { LaboratoryCalendarComponent } from './components/sections/calendar/laboratory-calendar/laboratory-calendar.component';
 import { LaboratoryCalendarDialogComponent } from './components/sections/dialogs/laboratory-calendar-dialog/laboratory-calendar-dialog.component';
+import { RequisitionComponent } from './components/sections/requisition/requisition.component';
+import { RequisitionDialogComponent } from './components/sections/dialogs/requisition-dialog/requisition-dialog.component';
+import { RequisitionItemComponent } from './components/sections/dialogs/requisition-item/requisition-item.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +44,10 @@ import { LaboratoryCalendarDialogComponent } from './components/sections/dialogs
     MaintenanceItemComponent,
     CalendarDialogComponent,
     LaboratoryCalendarComponent,
-    LaboratoryCalendarDialogComponent
+    LaboratoryCalendarDialogComponent,
+    RequisitionComponent,
+    RequisitionDialogComponent,
+    RequisitionItemComponent
   ],
   imports: [
     BrowserModule,

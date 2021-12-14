@@ -21,6 +21,7 @@ export class DashboardComponent implements OnInit {
   statusRequests: Boolean
   statusUsers: Boolean
   statusMaintenances: Boolean
+  statusRequisitions: Boolean
   statusCalendar: Boolean
   user: any
   name: string
@@ -51,5 +52,7 @@ export class DashboardComponent implements OnInit {
     this.statusUsers = !!this.user.pageFaculties.find(i => i.page.name === 'Usuarios' && i.faculty.name === 'ver')
     this.statusMaintenances = !!this.user.pageFaculties.find(i => i.page.name === 'Mantenimiento' && i.faculty.name === 'ver')
     this.statusCalendar = !!this.user.pageFaculties.find(i => i.page.name === 'Calendario' && i.faculty.name === 'ver')
+    this.statusRequisitions = !!this.user.pageFaculties.find(i => i.page.name === 'Requisiciones' && i.faculty.name === 'ver')
+    
   }
 }
